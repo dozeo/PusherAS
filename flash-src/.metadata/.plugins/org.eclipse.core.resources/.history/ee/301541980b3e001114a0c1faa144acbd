@@ -1,0 +1,37 @@
+package com.dozeo.pusheras.vo
+{
+	/**
+	 * @author Tilman Griesel - dozeo GmbH
+	 */
+	public final class WebsocketStatusVO
+	{
+		private var _connected:Boolean;
+		private var _connecting:Boolean;
+		public var :String;
+		
+		public function WebsocketStatusVO():void 
+		{ 
+		}
+		
+		public function get connected():Boolean
+		{
+			return this._connected;
+		}
+		
+		public function set connected(value:Boolean):void
+		{
+			this._connected = value;
+		}
+		
+		public function get connecting():Boolean
+		{
+			return this._connecting;
+		}
+		
+		public function set connecting(value:Boolean):void
+		{
+			this._connecting = value;
+		}
+		
+	}
+}

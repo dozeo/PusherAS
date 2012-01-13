@@ -1,0 +1,22 @@
+package com.dozeo.pusheras.logger
+{
+	import net.gimite.websocket.IWebSocketLogger;
+	
+	public class WebSocketLogger implements IWebSocketLogger
+	{
+		public function WebSocketLogger()
+		{
+			//TODO: implement function
+		}
+		
+		public function log(message:String):void
+		{
+			//TODO: implement function
+		}
+		
+		public function error(message:String):void
+		{
+			//TODO: implement function
+		}
+	}
+}

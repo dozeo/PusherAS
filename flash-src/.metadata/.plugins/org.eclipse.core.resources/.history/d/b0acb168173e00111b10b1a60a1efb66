@@ -1,0 +1,22 @@
+package
+{
+	import com.dozeo.pusheras.Pusher;
+	import com.dozeo.pusheras.vo.PusherOptionsVO;
+	
+	import flash.display.Sprite;
+	
+	public class PusherASExample extends Sprite
+	{
+		public function PusherASExample()
+		{
+			// create pusher options
+			var pusherOptions:PusherOptionsVO = new PusherOptionsVO();
+			pusherOptions.applicationKey = '7eb5f1182dcd61a4ac58';
+			pusherOptions.origin = 'http://localhost/';
+			
+			// connect to server
+			var pusher:Pusher = new Pusher(pusherOptions);
+			pusher.connect();
+		}
+	}
+}
