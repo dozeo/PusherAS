@@ -23,7 +23,7 @@ package com.dozeo.pusheras
 	import net.gimite.websocket.WebSocketFrame;
 	
 	/**
-	 * Pusher <http://pusher.com> ActionScript3 Client Library
+	 * Pusher <http://pusher.com> Options Storage Object
 	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
 	 */
 	public class Pusher

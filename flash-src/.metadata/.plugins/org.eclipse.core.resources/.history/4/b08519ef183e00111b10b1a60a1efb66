@@ -22,10 +22,6 @@ package com.dozeo.pusheras
 	import net.gimite.websocket.WebSocketEvent;
 	import net.gimite.websocket.WebSocketFrame;
 	
-	/**
-	 * Pusher <http://pusher.com> ActionScript3 Client Library
-	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
-	 */
 	public class Pusher
 	{
 		// PusherAS vars
