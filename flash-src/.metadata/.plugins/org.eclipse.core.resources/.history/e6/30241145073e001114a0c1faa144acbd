@@ -1,0 +1,49 @@
+package com.dozeo.pusheras
+{
+	import com.dozeo.pusheras.vo.PusherOptions;
+	
+	import net.gimite.websocket.WebSocket;
+	import net.gimite.websocket.WebSocketEvent;
+	import net.gimite.websocket.WebSocketFrame;
+	
+	public class Pusher
+	{
+		// Pusher defaults (all pusher js vars)
+		private static const VERSION:String = '1.11.0';
+		
+		private static const host:String = 'ws.pusherapp.com';
+		private static const ws_port:uint = 80;
+		private static const wss_port:uint = 443;
+		private static const hannel_auth_endpoint:String = '/pusher/auth';
+		private static const cdn_http:String = 'http://js.pusher.com/'
+		private static const cdn_https:String = 'https://d3dy5gmtp8yhk7.cloudfront.net/'
+		private static const dependency_suffix:String = '';
+		private static const channel_auth_transport:String = 'ajax';
+		private static const activity_timeout:uint = 120000;
+		private static const pong_timeout:uint = 30000;
+		
+		// PusherAS vars
+		private var _webSocketIndex:int = -1;
+		private var _options:PusherOptions;
+		
+		/**
+		 * @param applicationKey
+		 * @param pusherOptions
+		 * 
+		 * */
+		public function Pusher(options:PusherOptions)
+		{
+			_options = options;
+			connect();
+		}
+		
+		private function connect():void
+		{
+			// increment websocket index
+			_webSocketIndex++;
+			
+			var websocket:WebSocket = new WebSocket(_webSocketIndex, 
+		}
+		
+	}
+}

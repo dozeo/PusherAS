@@ -1,0 +1,126 @@
+package com.dozeo.pusheras
+{
+	import com.dozeo.pusheras.vo.PusherOptionsVO;
+	import com.dozeo.pusheras.vo.WebsocketStatusVO;
+	
+	import flash.events.Event;
+	
+	import net.gimite.websocket.WebSocket;
+	import net.gimite.websocket.WebSocketEvent;
+	import net.gimite.websocket.WebSocketFrame;
+	
+	public class Pusher
+	{
+		// PusherAS vars
+		private var _options:PusherOptionsVO = null;
+		
+		// websocket vars
+		private var _websocket:WebSocket = null;
+		private var _websocketStatus:WebsocketStatusVO;
+
+		/**
+		 * @param options all required options for the pusher connection
+		 * */
+		public function Pusher(options:PusherOptionsVO)
+		{
+			// parameter check
+			if(options == null)
+				throw new Error('options cannot be null');
+			
+			// store options
+			_options = options;
+			
+			// create small storage object for the websocket status
+			_websocketStatus = new WebsocketStatusVO();
+		}
+		
+		public function init():void
+		{
+			// connect to websocket server
+			connect();
+		}
+		
+		/**
+		 * inital socket connection
+		 * */
+		private function connect():void
+		{
+			// check for websocket status storage object
+			if(_websocketStatus == null)
+				throw new Error('websocket status cannot be null');
+			
+			// check if connection attempt is already in progress
+			if(_websocketStatus.connecting)
+			{
+				log('Already attempting connection. Aborting...');
+				return;
+			}
+			
+			// check if websocket is already connected
+			if(_websocketStatus.connected)
+			{
+				log('Connection is already established. Aborting connection attempt...');
+				return;
+			}
+			
+			// get pusher url
+			var pusherURL:String;
+			if(_options.encrypted || _options.secure)
+				pusherURL = _options.pusherURL;
+			else
+				pusherURL = _options.pusherSecureURL;
+			
+			// create websocket instance
+			_websocket = new WebSocket(_websocketStatus.connectionIndex,
+										pusherURL,
+										_options.protocols,
+										_options.origin,
+										_options.proxyHost,
+										_options.proxyPort,
+										_options.cookie,
+										_options.headers,
+										null);
+			
+			// add websocket event listeners
+			_websocket.addEventListener(WebSocketEvent.OPEN, _websocket_OPEN);
+			_websocket.addEventListener(WebSocketEvent.CLOSE, _websocket_CLOSE);
+			_websocket.addEventListener(WebSocketEvent.ERROR, _websocket_ERROR);
+			_websocket.addEventListener(WebSocketEvent.MESSAGE, _websocket_MESSAGE);
+			
+		}
+		
+		protected function _websocket_OPEN(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message: ' + event.message + ' Code:' + event.code + ' Reason: ' + event.reason + ' Clean: ' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+		}
+		
+		protected function _websocket_CLOSE(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message: ' + event.message + ' Code:' + event.code + ' Reason: ' + event.reason + ' Clean: ' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+		}
+		
+		protected function _websocket_ERROR(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message: ' + event.message + ' Code:' + event.code + ' Reason: ' + event.reason + ' Clean: ' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+		}
+		
+		protected function _websocket_MESSAGE(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message: ' + event.message + ' Code:' + event.code + ' Reason: ' + event.reason + ' Clean: ' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+		}
+		
+		private function log(msg:String):void
+		{
+			trace('LOG: ' + msg);
+		}
+		
+	}
+}

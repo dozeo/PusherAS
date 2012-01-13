@@ -1,0 +1,14 @@
+package
+{
+	import com.dozeo.pusheras.vo.PusherOptions;
+	
+	import flash.display.Sprite;
+	
+	public class PusherASExample extends Sprite
+	{
+		public function PusherASExample()
+		{
+			var pusherOptions:PusherOptions = new PusherOptions();
+		}
+	}
+}

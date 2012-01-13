@@ -1,0 +1,46 @@
+package com.dozeo.pusheras
+{
+	import com.dozeo.pusheras.vo.PusherOptions;
+	
+	import net.gimite.websocket.WebSocket;
+	import net.gimite.websocket.WebSocketEvent;
+	import net.gimite.websocket.WebSocketFrame;
+	
+	public class Pusher
+	{
+		// PusherAS vars
+		private var _options:PusherOptions;
+		
+		// websocket vars
+		private var _websocket:WebSocket;
+		private var _webSocketIndex:int = -1;
+
+		
+		/**
+		 * @param applicationKey
+		 * @param pusherOptions
+		 * 
+		 * */
+		public function Pusher(options:PusherOptions)
+		{
+			// parameter check
+			if(options == null)
+				throw new Error('Options cannot be Null');
+			
+			// store options
+			_options = options;
+			
+			// connect to pusher server
+			connect();
+		}
+		
+		private function connect():void
+		{
+			// increment websocket index
+			_webSocketIndex++;
+			
+			var websocket:WebSocket = new WebSocket(_webSocketIndex, _options.
+		}
+		
+	}
+}
