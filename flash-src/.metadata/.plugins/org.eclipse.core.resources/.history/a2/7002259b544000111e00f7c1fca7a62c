@@ -1,0 +1,9 @@
+package com.dozeo.pusheras.events
+{
+	public class PusherEventData
+	{
+		public function PusherEventData()
+		{
+		}
+	}
+}

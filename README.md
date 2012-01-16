@@ -3,13 +3,13 @@ Pusher <http://pusher.com> ActionScript3 Client Library
 
 Small Library for Pusher connections from AS3 / Flash using the native event system.
 
-… still in development
+… still under development ;)
 
 Usage
 -------
 
     // create pusher options
-    var pusherOptions:PusherOptionsVO = new PusherOptionsVO();
+    var pusherOptions:PusherOptions = new PusherOptions();
     pusherOptions.applicationKey = '7eb5f1182dcd61xxxxxxx';
     pusherOptions.origin = 'http://localhost/';
 

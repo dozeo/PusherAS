@@ -8,12 +8,15 @@
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 package com.dozeo.pusheras
 {
+	import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSONDecoder;
+	import com.dozeo.pusheras.events.PusherEvent;
 	import com.dozeo.pusheras.logger.WebSocketLogger;
-	import com.dozeo.pusheras.vo.PusherOptionsVO;
-	import com.dozeo.pusheras.vo.WebsocketStatusVO;
+	import com.dozeo.pusheras.utils.PusherEventParser;
+	import com.dozeo.pusheras.vo.PusherOptions;
+	import com.dozeo.pusheras.vo.WebsocketStatus;
 	
 	import flash.events.Event;
 	
@@ -29,16 +32,16 @@ package com.dozeo.pusheras
 	public class Pusher
 	{
 		// PusherAS vars
-		private var _options:PusherOptionsVO = null;
+		private var _options:PusherOptions = null;
 		
 		// websocket vars
 		private var _websocket:WebSocket = null;
-		private var _websocketStatus:WebsocketStatusVO;
+		private var _websocketStatus:WebsocketStatus;
 
 		/**
 		 * @param options all required options for the pusher connection
 		 * */
-		public function Pusher(options:PusherOptionsVO)
+		public function Pusher(options:PusherOptions)
 		{
 			// parameter check
 			if(options == null)
@@ -48,7 +51,7 @@ package com.dozeo.pusheras
 			_options = options;
 			
 			// create small storage object for the websocket status
-			_websocketStatus = new WebsocketStatusVO();
+			_websocketStatus = new WebsocketStatus();
 		}
 		
 		public function connect():void
@@ -110,7 +113,6 @@ package com.dozeo.pusheras
 		{
 			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
 			// TODO Auto-generated method stub
-			
 		}
 		
 		protected function _websocket_CLOSE(event:WebSocketEvent):void
@@ -130,8 +132,9 @@ package com.dozeo.pusheras
 		protected function _websocket_MESSAGE(event:WebSocketEvent):void
 		{
 			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
-			// TODO Auto-generated method stub
 			
+			var pusherEvent:PusherEvent = PusherEvent.parse(event.message);
+			log('pusher event: ' + pusherEvent.json());
 		}
 		
 		private function log(msg:String):void

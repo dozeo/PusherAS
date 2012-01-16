@@ -1,0 +1,36 @@
+package com.dozeo.pusheras.events
+{
+	/**
+	 * @author 
+	 */
+	public final class PusherEventChannelData
+	{
+		private var _user_id:Number;
+		private var _user_info:String;
+		
+		public function PusherEventChannelData():void 
+		{ 
+		}
+		
+		public function get user_id():Number
+		{
+			return this._user_id;
+		}
+		
+		public function set user_id(value:Number):void
+		{
+			this._user_id = value;
+		}
+		
+		public function get user_info():String
+		{
+			return this._user_info;
+		}
+		
+		public function set user_info(value:String):void
+		{
+			this._user_info = value;
+		}
+		
+	}
+}

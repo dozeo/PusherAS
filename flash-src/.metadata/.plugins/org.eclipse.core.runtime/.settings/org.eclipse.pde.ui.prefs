@@ -1,0 +1,13 @@
+#Sun Jan 15 14:33:14 CET 2012
+editor.color.string=49,126,204
+editor.color.header_assignment=0,0,0
+editor.color.header_value=49,126,204
+editor.color.default=88,88,88
+editor.color.header_attributes=85,170,85
+editor.color.tag=85,170,85
+editor.color.header_key=41,95,148
+editor.color.instr=188,90,101
+eclipse.preferences.version=1
+editor.color.header_osgi=41,95,148
+editor.color.externalized_string=49,126,204
+editor.color.xml_comment=173,149,175

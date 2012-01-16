@@ -1,0 +1,18 @@
+#Sun Jan 15 14:33:14 CET 2012
+num.TexColor=175,15,145
+def.BibColor=88,88,88
+key.BibColor=41,95,148
+str.BibColor=49,126,204
+typ.BibColor=171,37,37
+def.TexColor=88,88,88
+equ.TexColor=49,126,204
+spe.TexColor=128,128,128
+slc.BibColor=173,149,175
+cmd.TexStyle=1
+com.TexStyle=2
+sqr.TexColor=85,170,85
+verb.TexColor=86,104,116
+crl.TexColor=85,170,85
+eclipse.preferences.version=1
+cmd.TexColor=188,90,101
+com.TexColor=173,149,175

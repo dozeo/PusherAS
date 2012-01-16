@@ -1,0 +1,153 @@
+// Copyright (c) 2012 dozeo GmbH
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+package com.dozeo.pusheras
+{
+	import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSONDecoder;
+	import com.dozeo.pusheras.events.PusherEvent;
+	import com.dozeo.pusheras.logger.WebSocketLogger;
+	import com.dozeo.pusheras.utils.PusherEventParser;
+	import com.dozeo.pusheras.vo.PusherOptions;
+	import com.dozeo.pusheras.vo.WebsocketStatus;
+	
+	import flash.events.Event;
+	
+	import net.gimite.websocket.IWebSocketLogger;
+	import net.gimite.websocket.WebSocket;
+	import net.gimite.websocket.WebSocketEvent;
+	import net.gimite.websocket.WebSocketFrame;
+	
+	/**
+	 * Pusher <http://pusher.com> ActionScript3 Client Library
+	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
+	 */
+	public class Pusher
+	{
+		// PusherAS vars
+		private var _options:PusherOptions = null;
+		
+		// websocket vars
+		private var _websocket:WebSocket = null;
+		private var _websocketStatus:WebsocketStatus;
+
+		/**
+		 * @param options all required options for the pusher connection
+		 * */
+		public function Pusher(options:PusherOptions)
+		{
+			// parameter check
+			if(options == null)
+				throw new Error('options cannot be null');
+			
+			// store options
+			_options = options;
+			
+			// create small storage object for the websocket status
+			_websocketStatus = new WebsocketStatus();
+		}
+		
+		public function connect():void
+		{
+			// connect to websocket server
+			connectWebsocket();
+		}
+		
+		/**
+		 * inital websocket connection
+		 * */
+		private function connectWebsocket():void
+		{
+			// check for websocket status storage object
+			if(_websocketStatus == null)
+				throw new Error('websocket status cannot be null');
+			
+			// check if connection attempt is already in progress
+			if(_websocketStatus.connecting)
+			{
+				log('Already attempting connection. Aborting...');
+				return;
+			}
+			
+			// check if websocket is already connected
+			if(_websocketStatus.connected)
+			{
+				log('Connection is already established. Aborting connection attempt...');
+				return;
+			}
+			
+			// get pusher url
+			var pusherURL:String;
+			if(_options.encrypted || _options.secure)
+				pusherURL = _options.pusherURL;
+			else
+				pusherURL = _options.pusherSecureURL;
+			
+			// create websocket instance
+			_websocket = new WebSocket(_websocketStatus.connectionIndex,
+										pusherURL,
+										_options.protocols,
+										_options.origin,
+										_options.proxyHost,
+										_options.proxyPort,
+										_options.cookie,
+										_options.headers,
+										new WebSocketLogger());
+			
+			// add websocket event listeners
+			_websocket.addEventListener(WebSocketEvent.OPEN, _websocket_OPEN);
+			_websocket.addEventListener(WebSocketEvent.CLOSE, _websocket_CLOSE);
+			_websocket.addEventListener(WebSocketEvent.ERROR, _websocket_ERROR);
+			_websocket.addEventListener(WebSocketEvent.MESSAGE, _websocket_MESSAGE);
+			
+		}
+		
+		protected function _websocket_OPEN(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+		}
+		
+		protected function _websocket_CLOSE(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+		}
+		
+		protected function _websocket_ERROR(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+		}
+		
+		protected function _websocket_MESSAGE(event:WebSocketEvent):void
+		{
+			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			// TODO Auto-generated method stub
+			
+
+			
+			var pusherEvent:PusherEvent = PusherEvent.parse(event.message);
+			trace('New pusher event: ' + pusherEvent.code);
+			//PusherEventParser.parse(event.message);
+			
+			
+		}
+		
+		private function log(msg:String):void
+		{
+			trace('LOG: ' + msg);
+		}
+		
+	}
+}

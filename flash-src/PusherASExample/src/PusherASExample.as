@@ -11,7 +11,7 @@
 package
 {
 	import com.dozeo.pusheras.Pusher;
-	import com.dozeo.pusheras.vo.PusherOptionsVO;
+	import com.dozeo.pusheras.vo.PusherOptions;
 	
 	import flash.display.Sprite;
 	
@@ -24,7 +24,7 @@ package
 		public function PusherASExample()
 		{
 			// create pusher options
-			var pusherOptions:PusherOptionsVO = new PusherOptionsVO();
+			var pusherOptions:PusherOptions = new PusherOptions();
 			pusherOptions.applicationKey = '7eb5f1182dcd61a4ac58';
 			pusherOptions.origin = 'http://localhost/';
 			

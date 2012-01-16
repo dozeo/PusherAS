@@ -1,0 +1,17 @@
+package utils
+{
+	import com.adobe.serialization.json.JSON;
+
+	public class PusherEventParser
+	{
+		public function PusherEventParser()
+		{
+		}
+		
+		public static function parse(pusherEventMessage:String):void
+		{
+			var rawMessageObject:Object = JSON.decode(pusherEventMessage);
+			
+		}
+	}
+}

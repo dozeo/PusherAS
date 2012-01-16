@@ -1,3 +1,28 @@
-#Fri Jan 13 17:30:02 CET 2012
+#Sun Jan 15 14:33:14 CET 2012
+matchingTagIndicationColor=255,207,187
+secondaryIPColor=224,224,255
+AbstractTextEditor.Color.Background=245,245,245
+javaScriptOccurrenceIndicationColor=255,207,187
 eclipse.preferences.version=1
+writeOccurrenceIndicationColor=255,207,187
+AbstractTextEditor.Color.Foreground.SystemDefault=false
+AbstractTextEditor.Color.Foreground=88,88,88
+AbstractTextEditor.Color.SelectionBackground=189,216,242
+currentIPColor=224,224,255
 overviewRuler_migration=migrated_3.1
+deletionIndicationColor=155,86,86
+searchResultIndicationColor=255,223,153
+asOccurencesIndicationColor=255,207,187
+currentLineColor=224,224,255
+PHPReadOccurrenceIndicationColor=255,207,187
+filteredSearchResultIndicationColor=255,223,153
+AbstractTextEditor.Color.SelectionForeground=72,72,72
+PHPWriteOccurrenceIndicationColor=255,207,187
+printMarginColor=175,191,207
+pydevOccurrenceIndicationColor=255,207,187
+AbstractTextEditor.Color.Background.SystemDefault=false
+occurrenceIndicationColor=255,207,187
+AbstractTextEditor.Color.SelectionBackground.SystemDefault=false
+lineNumberColor=175,191,207
+AbstractTextEditor.Color.FindScope=189,216,242
+AbstractTextEditor.Color.SelectionForeground.SystemDefault=false

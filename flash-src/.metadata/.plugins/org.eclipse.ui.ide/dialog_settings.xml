@@ -18,6 +18,14 @@
 		<item value="org.eclipse.rcp:3.6.1.r361_v20100827-9OArFLdFjY-ThSQXmKvKz0_T"/>
 		<item value="org.eclipse.wst.xml_ui.feature:3.2.2.v201008170029-7H7AFUQDxumQGOpBqffOY2f1qxDZ"/>
 	</list>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="352" key="DIALOG_Y_ORIGIN"/>
+		<item value="519" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
 	<section name="ResourceNavigator">
 		<item value="" key="ResourceWorkingSetFilter.STORE_WORKING_SET"/>
 		<item value="2" key="ResourceViewer.STORE_SORT_TYPE"/>
