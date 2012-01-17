@@ -3,11 +3,10 @@
   <includeClasses>
     <classEntry path="com.dozeo.pusheras.vo.WebsocketStatus"/>
     <classEntry path="com.dozeo.pusheras.logger.WebSocketLogger"/>
-    <classEntry path="com.dozeo.pusheras.utils.PusherEventParser"/>
     <classEntry path="com.dozeo.pusheras.events.PusherEvent"/>
-    <classEntry path="com.dozeo.pusheras.events.PusherEventData"/>
-    <classEntry path="com.dozeo.pusheras.events.PusherEventChannelData"/>
-    <classEntry path="com.dozeo.pusheras.events.PusherEventUserInfo"/>
+    <classEntry path="trash.PusherEventUserInfo"/>
+    <classEntry path="com.dozeo.pusheras.utils.PusherStatus"/>
+    <classEntry path="com.dozeo.pusheras.channel.PusherChannel"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

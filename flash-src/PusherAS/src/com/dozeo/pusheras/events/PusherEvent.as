@@ -11,22 +11,47 @@
 package com.dozeo.pusheras.events
 {
 	import com.adobe.serialization.json.JSON;
+	
+	import flash.events.Event;
+	import flash.sampler.NewObjectSample;
 
 	/**
 	 * Pusher <http://pusher.com> Base Event
 	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
 	 */
-	public final class PusherEvent
+	public class PusherEvent extends Event
 	{
+		
+		// constants
+		static public const CONNECTION_ESTABLISHED:String = "pusher:connection_established";
+		static public const CONNECTION_DISCONNECTED:String = "pusher:connection_disconnected";
+		static public const CONNECTION_FAILED:String = "pusher:connection_failed";
+		static public const ERROR_EVENT_NAME:String = "pusher:error";
+		static public const SUBSCRIPTION_SUCCEEDED:String = "pusher:subscription_succeeded";
+		static public const MEMBER_ADDED:String = "pusher:member_added";
+		static public const MEMBER_REMOVED:String = "pusher:member_removed";
+		static public const SUBSCRIBE:String = "pusher:subscribe";
+		static public const UNSUBSCRIBE:String = "pusher:unsubscribe";
+		
+		// vars
 		private var _event:String;
+		private var _channel:String;
 		private var _message:String;
 		private var _code:int;
-		private var _socket_id:Number;	
-		private var _data:PusherEventData;
+		private var _data:Object;
 		
-		public function PusherEvent():void 
-		{ 
+		public function PusherEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false):void 
+		{
+			super(type, bubbles, cancelable);
+			
+			_event = type;
+			_data = new Object();
 		}
+		
+		override public function clone():Event 
+		{ 
+			return new PusherEvent(this.type, this.bubbles, this.cancelable);
+		} 
 		
 		public function get event():String
 		{
@@ -68,16 +93,31 @@ package com.dozeo.pusheras.events
 			this._code = value;
 		}
 		
-		public function get data():PusherEventData
+		public function get data():Object
 		{
 			return this._data;
 		}
 		
-		public function set data(value:PusherEventData):void
+		public function set data(value:Object):void
 		{
 			this._data = value;
 		}
 		
+		public function get channel():String
+		{
+			return _channel;
+		}
+		
+		public function set channel(value:String):void
+		{
+			_channel = value;
+		}
+		
+		/**
+		 * Parse JSON String to an pusher event
+		 * @param data json encoded pusher message
+		 * @return pusher event
+		 * */
 		public static function parse(data:String):PusherEvent
 		{
 			// check if message object is null
@@ -87,13 +127,11 @@ package com.dozeo.pusheras.events
 			// decode data JSON string to an raw object
 			var decodedObject:Object = JSON.decode(decodeURIComponent(data));
 			
-			// create new pusher event
-			var pusherEvent:PusherEvent = new PusherEvent();
-			
 			// parse "event" property
 			if(decodedObject.hasOwnProperty('event'))
 			{
-				pusherEvent.event = decodedObject.event;
+				// create new pusher event
+				var pusherEvent:PusherEvent = new PusherEvent(decodedObject.event);
 			}
 			else
 			{
@@ -103,7 +141,7 @@ package com.dozeo.pusheras.events
 			// parse "data" property
 			if(decodedObject.hasOwnProperty('data'))
 			{
-				pusherEvent.data = PusherEventData.parse(decodedObject.data);
+				pusherEvent.data = JSON.decode(decodeURIComponent(decodedObject.data));
 			}
 			
 			// parse "code" property
@@ -118,18 +156,31 @@ package com.dozeo.pusheras.events
 				pusherEvent.socket_id = decodedObject.socket_id;
 			}
 			
+			// parse "channel" property
+			if(decodedObject.hasOwnProperty('channel'))
+			{
+				pusherEvent.channel = decodedObject.channel;
+			}
+			
 			// return pusher event
 			return pusherEvent;
 		}
 		
 		/**
-		 * get JSON encoded string
+		 * Returns the AS3 event as an Pusher JSON String
+		 * @return Pusher JSON Event String
 		 * */
-		public function json():String
+		public function toJSON():String
 		{
-			var eventString:String = JSON.encode(this);
+			var pusherEvent:Object = new Object();
+			pusherEvent.code = this.code;
+			pusherEvent.channel = this.channel;
+			pusherEvent.data = this.data;
+			pusherEvent.event = this.event;
+			pusherEvent.message = this.message;
+	
+			var eventString:String = JSON.encode(pusherEvent);
 			return eventString;
 		}
-		
 	}
 }

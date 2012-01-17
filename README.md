@@ -8,14 +8,35 @@ Small Library for Pusher connections from AS3 / Flash using the native event sys
 Usage
 -------
 
-    // create pusher options
-    var pusherOptions:PusherOptions = new PusherOptions();
-    pusherOptions.applicationKey = '7eb5f1182dcd61xxxxxxx';
-    pusherOptions.origin = 'http://localhost/';
+    public function PusherASExample()
+    {
+        // create pusher options
+        var pusherOptions:PusherOptions = new PusherOptions();
+        pusherOptions.applicationKey = '7eb5f11xxxxxxxxxxx';
+        pusherOptions.origin = 'http://localhost/';
+        
+        // create pusher client and connect to server
+        _pusher = new Pusher(pusherOptions);
+        _pusher.addEventListener(PusherEvent.CONNECTION_ESTABLISHED, pusher_CONNECTION_ESTABLISHED);
+        _pusher.connect();
+    }
 
-    // create pusher client and connect to server
-    var pusher:Pusher = new Pusher(pusherOptions);
-    pusher.connect();
+    /**
+     * On sucessfull pusher connection subscribe a new channel and hear for events
+     * */
+    protected function pusher_CONNECTION_ESTABLISHED(event:PusherEvent):void
+    {
+        var testChannel:PusherChannel = _pusher.subscribe('test_channel');
+        testChannel.addEventListener('MY_EVENT', testChannel_MY_EVENT);
+    }
+
+    /**
+     * Pusher "testChannel" Event Listener
+     * */
+    protected function testChannel_MY_EVENT(event:PusherEvent):void
+    {
+        trace('YEAH... MY EVENT WAS DISPATCHED! ;D Event: ' + event.toJSON());
+    }
 
 Documents
 -------

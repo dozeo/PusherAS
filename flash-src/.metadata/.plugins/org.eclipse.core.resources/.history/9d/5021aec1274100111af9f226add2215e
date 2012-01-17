@@ -1,0 +1,26 @@
+package com.dozeo.pusheras.channel
+{
+	import flash.events.EventDispatcher;
+
+	public class PusherChannel extends EventDispatcher
+	{
+		
+		private var _name:String;
+		
+		public function PusherChannel(name:String)
+		{
+			this._name = name;
+		}
+
+		public function get name():String
+		{
+			return _name;
+		}
+
+		public function set name(value:String):void
+		{
+			_name = value;
+		}
+
+	}
+}

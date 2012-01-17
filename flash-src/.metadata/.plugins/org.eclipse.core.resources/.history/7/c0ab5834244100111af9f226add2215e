@@ -1,0 +1,11 @@
+package com.dozeo.pusheras.channel
+{
+	import flash.events.EventDispatcher;
+
+	public class PusherChannel extends EventDispatcher
+	{
+		public function PusherChannel()
+		{
+		}
+	}
+}

@@ -1,0 +1,47 @@
+package com.dozeo.pusheras.channel
+{
+	import com.dozeo.pusheras.Pusher;
+	import com.dozeo.pusheras.events.PusherEvent;
+	
+	import flash.events.EventDispatcher;
+
+	public class PusherChannel extends EventDispatcher
+	{
+		
+		private var _name:String;
+		private var _pusherDispatcherCallback:Function;
+		
+		public function PusherChannel(name:String)
+		{
+			this._name = name;
+		}
+		
+		public function dispatchPusherEvent(event:PusherEvent):void
+		{
+			if(_pusherDispatcherCallback == null)
+				return;
+		}
+
+		public function get name():String
+		{
+			return _name;
+		}
+
+		public function set name(value:String):void
+		{
+			_name = value;
+		}
+
+		public function get pusherDispatcherCallback():Function
+		{
+			return _pusherDispatcherCallback;
+		}
+
+		public function set pusherDispatcherCallback(value:Function):void
+		{
+			_pusherDispatcherCallback = value;
+		}
+
+
+	}
+}

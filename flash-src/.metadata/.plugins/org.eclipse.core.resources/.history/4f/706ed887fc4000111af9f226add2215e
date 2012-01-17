@@ -1,0 +1,9 @@
+package com.dozeo.pusheras.utils
+{
+	public class PusherStatus
+	{
+		public function PusherStatus()
+		{
+		}
+	}
+}

@@ -12,13 +12,17 @@ package com.dozeo.pusheras
 {
 	import com.adobe.serialization.json.JSON;
 	import com.adobe.serialization.json.JSONDecoder;
+	import com.dozeo.pusheras.channel.PusherChannel;
 	import com.dozeo.pusheras.events.PusherEvent;
 	import com.dozeo.pusheras.logger.WebSocketLogger;
-	import com.dozeo.pusheras.utils.PusherEventParser;
 	import com.dozeo.pusheras.vo.PusherOptions;
+	import com.dozeo.pusheras.vo.PusherStatus;
 	import com.dozeo.pusheras.vo.WebsocketStatus;
 	
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	
+	import mx.charts.CategoryAxis;
 	
 	import net.gimite.websocket.IWebSocketLogger;
 	import net.gimite.websocket.WebSocket;
@@ -29,15 +33,19 @@ package com.dozeo.pusheras
 	 * Pusher <http://pusher.com> ActionScript3 Client Library
 	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
 	 */
-	public class Pusher
+	public class Pusher extends EventDispatcher
 	{
-		// PusherAS vars
-		private var _options:PusherOptions = null;
+		// pusheras vars
+		private var _pusherOptions:PusherOptions;
+		private var _pusherStatus:PusherStatus;
 		
 		// websocket vars
-		private var _websocket:WebSocket = null;
+		private var _websocket:WebSocket;
 		private var _websocketStatus:WebsocketStatus;
-
+		
+		// channel bucket
+		private var _channelBucket:Array;
+		
 		/**
 		 * @param options all required options for the pusher connection
 		 * */
@@ -48,15 +56,22 @@ package com.dozeo.pusheras
 				throw new Error('options cannot be null');
 			
 			// store options
-			_options = options;
+			_pusherOptions = options;
 			
-			// create small storage object for the websocket status
+			// create small storage object for the websocket and pusher status
 			_websocketStatus = new WebsocketStatus();
+			_pusherStatus = new PusherStatus();
+			
+			// create channel bucket
+			_channelBucket = new Array();
+			
+			this.addEventListener(PusherEvent.CONNECTION_ESTABLISHED, this_CONNECTION_ESTABLISHED);
 		}
 		
 		public function connect():void
 		{
 			// connect to websocket server
+			
 			connectWebsocket();
 		}
 		
@@ -68,6 +83,10 @@ package com.dozeo.pusheras
 			// check for websocket status storage object
 			if(_websocketStatus == null)
 				throw new Error('websocket status cannot be null');
+
+			// check for pusher status storage object
+			if(_pusherStatus == null)
+				throw new Error('pusher status cannot be null');
 			
 			// check if connection attempt is already in progress
 			if(_websocketStatus.connecting)
@@ -83,22 +102,26 @@ package com.dozeo.pusheras
 				return;
 			}
 			
+			// update status
+			_pusherStatus.connecting = true;
+			_websocketStatus.connecting = true;
+			
 			// get pusher url
 			var pusherURL:String;
-			if(_options.encrypted || _options.secure)
-				pusherURL = _options.pusherURL;
+			if(_pusherOptions.encrypted || _pusherOptions.secure)
+				pusherURL = _pusherOptions.pusherURL;
 			else
-				pusherURL = _options.pusherSecureURL;
+				pusherURL = _pusherOptions.pusherSecureURL;
 			
 			// create websocket instance
 			_websocket = new WebSocket(_websocketStatus.connectionIndex,
 										pusherURL,
-										_options.protocols,
-										_options.origin,
-										_options.proxyHost,
-										_options.proxyPort,
-										_options.cookie,
-										_options.headers,
+										_pusherOptions.protocols,
+										_pusherOptions.origin,
+										_pusherOptions.proxyHost,
+										_pusherOptions.proxyPort,
+										_pusherOptions.cookie,
+										_pusherOptions.headers,
 										new WebSocketLogger());
 			
 			// add websocket event listeners
@@ -111,36 +134,140 @@ package com.dozeo.pusheras
 		
 		protected function _websocket_OPEN(event:WebSocketEvent):void
 		{
-			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
-			// TODO Auto-generated method stub
+			log('_websocket_OPEN Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			
+			// store status
+			_websocketStatus.connected = true;
+			
 		}
 		
 		protected function _websocket_CLOSE(event:WebSocketEvent):void
 		{
-			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			log('_websocket_CLOSE Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
 			// TODO Auto-generated method stub
 			
 		}
 		
 		protected function _websocket_ERROR(event:WebSocketEvent):void
 		{
-			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			log('_websocket_ERROR Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
 			// TODO Auto-generated method stub
-			
 		}
 		
 		protected function _websocket_MESSAGE(event:WebSocketEvent):void
 		{
-			log('Websocket Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			try
+			{
+				// try to create new pusher event from websocket message
+				var pusherEvent:PusherEvent = PusherEvent.parse(event.message);				
+			}
+			catch(e:Error)
+			{
+				log('websocket message error: ' + e.message);
+				return;
+			}
 			
-			var pusherEvent:PusherEvent = PusherEvent.parse(event.message);
-			log('pusher event: ' + pusherEvent.json());
+			// look in the channel bucket if channel subscribed and dispatch event on it
+			// very simple logic with great performance ;)
+			if(pusherEvent.channel != null)
+			{
+				for(var i:int = 0; i < _channelBucket.length; i++)
+				{
+					var channel:PusherChannel = _channelBucket[i] as PusherChannel;
+					if(channel.name == pusherEvent.channel)
+					{
+						channel.dispatchEvent(pusherEvent);
+					}
+				}
+			}
+			else
+			{
+				// redispatch pusher event
+				this.dispatchEvent(pusherEvent);
+			}
+			
+			log('pusher event: ' + pusherEvent.toJSON());
 		}
 		
+		protected function this_CONNECTION_ESTABLISHED(event:PusherEvent):void
+		{
+			log('this_CONNECTION_ESTABLISHED');
+			_pusherStatus.connected = true;
+			
+			if(event.data.hasOwnProperty('socket_id'))
+				_websocketStatus.socketID = event.data.socket_id;
+		}
+		
+		/**
+		 * Subscribes a pusher channel with the given name.
+		 * 
+		 * @param channelName The name of your channel
+		 * @return a chanel instance for event listening and dispatching
+		 */	
+		public function subscribe(channelName:String):PusherChannel
+		{
+			// check the pusher connection
+			if(_pusherStatus.connected == false)
+				throw new Error('cannot subscribe "' + channelName + '" because the pusher service is not connected!');
+			
+			// create new channel object
+			var pusherChannel:PusherChannel = new PusherChannel(channelName, dispatchPusherEvent);
+			_channelBucket.push(pusherChannel);
+			
+			// create new pusher event
+			var pusherEvent:PusherEvent = new PusherEvent(PusherEvent.SUBSCRIBE);
+			pusherEvent.data.channel = channelName;
+			
+			// dispatch event to pusher service
+			dispatchPusherEvent(pusherEvent);
+			
+			return pusherChannel;
+		}
+		
+		public function unsubscribe(channelName:String):void
+		{
+			// create new pusher event
+			var pusherEvent:PusherEvent = new PusherEvent(PusherEvent.UNSUBSCRIBE);
+			pusherEvent.data.channel = channelName;
+			
+			// search for channel in bucket
+			for(var i:int = 0; i < _channelBucket.length; i++)
+			{
+				var channel:PusherChannel = _channelBucket[i] as PusherChannel;
+				if(channel.name == pusherEvent.channel)
+				{
+					// remove channel from bucket
+					_channelBucket.splice(i, 1);
+				}
+			}
+		}
+		
+		/**
+		 * dispatch event to pusher service
+		 * **/
+		public function dispatchPusherEvent(event:PusherEvent):void
+		{
+			// check websocket connection
+			if(_websocketStatus.connected == false)
+				throw new Error('websocket is not connected, cannot send event');
+			
+			try
+			{
+				_websocket.send(event.toJSON());
+			}
+			catch(e:Error)
+			{
+				log('dispatchPusherEvent failed: ' + e.message);
+			}
+		}
+		
+		/**
+		 * Event Logging
+		 * ToDo
+		 * */
 		private function log(msg:String):void
 		{
 			trace('LOG: ' + msg);
 		}
-		
 	}
 }

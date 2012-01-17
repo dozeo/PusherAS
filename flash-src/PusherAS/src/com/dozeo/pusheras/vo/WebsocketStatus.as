@@ -19,6 +19,7 @@ package com.dozeo.pusheras.vo
 		private var _connectionIndex:int = -1;
 		private var _connected:Boolean = false;
 		private var _connecting:Boolean = false;
+		private var _socketID:Number = -1;
 		
 		public function WebsocketStatus():void 
 		{ 
@@ -42,6 +43,9 @@ package com.dozeo.pusheras.vo
 		public function set connected(value:Boolean):void
 		{
 			this._connected = value;
+			
+			if(value == true)
+				_connecting = false;
 		}
 		
 		public function get connecting():Boolean
@@ -53,6 +57,17 @@ package com.dozeo.pusheras.vo
 		{
 			this._connecting = value;
 		}
+
+		public function get socketID():Number
+		{
+			return _socketID;
+		}
+
+		public function set socketID(value:Number):void
+		{
+			_socketID = value;
+		}
+
 		
 	}
 }

@@ -11,9 +11,12 @@
 package
 {
 	import com.dozeo.pusheras.Pusher;
+	import com.dozeo.pusheras.channel.PusherChannel;
+	import com.dozeo.pusheras.events.PusherEvent;
 	import com.dozeo.pusheras.vo.PusherOptions;
 	
 	import flash.display.Sprite;
+	import flash.events.Event;
 	
 	/**
 	 * Pusher <http://pusher.com> Example Application
@@ -21,6 +24,8 @@ package
 	 */
 	public class PusherASExample extends Sprite
 	{
+		private var _pusher:Pusher;
+		
 		public function PusherASExample()
 		{
 			// create pusher options
@@ -29,8 +34,26 @@ package
 			pusherOptions.origin = 'http://localhost/';
 			
 			// create pusher client and connect to server
-			var pusher:Pusher = new Pusher(pusherOptions);
-			pusher.connect();
+			_pusher = new Pusher(pusherOptions);
+			_pusher.addEventListener(PusherEvent.CONNECTION_ESTABLISHED, pusher_CONNECTION_ESTABLISHED);
+			_pusher.connect();
+		}
+		
+		/**
+		 * On sucessfull pusher connection subscribe a new channel and hear for events
+		 * */
+		protected function pusher_CONNECTION_ESTABLISHED(event:PusherEvent):void
+		{
+			var testChannel:PusherChannel = _pusher.subscribe('test_channel');
+			testChannel.addEventListener('MY_EVENT', testChannel_MY_EVENT);
+		}
+		
+		/**
+		 * Pusher "testChannel" Event Listener
+		 * */
+		protected function testChannel_MY_EVENT(event:PusherEvent):void
+		{
+			trace('YEAH... MY EVENT WAS DISPATCHED! ;D Event: ' + event.toJSON());
 		}
 	}
 }
