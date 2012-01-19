@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<item value="true" key="com.adobe.flexbuilder.project.ui.use.default.location"/>
-	<item value="true" key="com.adobe.flexbuilder.project.ui.last.apptype"/>
 	<item value="true" key="com.adobe.flexbuilder.project.ui.library.use.air.config"/>
+	<item value="true" key="com.adobe.flexbuilder.project.ui.last.apptype"/>
 	<item value="false" key="com.adobe.flexbuilder.project.ui.library.use.fc.compatibility"/>
 	<item value="false" key="com.adobe.flexbuilder.project.ui.library.use.multiplatform.config"/>
 	<section name="com.adobe.flexbuilder.help.ModulesPropertyPage">

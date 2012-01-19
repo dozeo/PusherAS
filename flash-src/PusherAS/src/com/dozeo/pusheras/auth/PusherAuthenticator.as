@@ -13,16 +13,12 @@ package com.dozeo.pusheras.auth
 
 	public class PusherAuthenticator extends EventDispatcher
 	{
-		private var _appKey:String;
-		
 		public function PusherAuthenticator()
 		{
 		}
 		
-		public function authenticate(appKey:String, socketID:String, endPoint:String, channelName:String):void
+		public function authenticate(socketID:String, endPoint:String, channelName:String):void
 		{
-			this._appKey = appKey;
-			
 			var urlLoader:URLLoader = new URLLoader();
 			var urlRequest:URLRequest = new URLRequest(endPoint);
 			var postVars:URLVariables = new URLVariables();
@@ -60,7 +56,7 @@ package com.dozeo.pusheras.auth
 				
 				if(decodedData.hasOwnProperty('auth'))
 				{
-					var authString:String = _appKey + ':' + decodedData.auth;
+					var authString:String = decodedData.auth;
 					this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.SUCESSFULL, authString));	
 				}
 				else

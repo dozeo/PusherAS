@@ -5,11 +5,14 @@
 	</section>
 	<section name="com.adobe.flexbuilder.as.editors.searchpage">
 	</section>
+	<section name="">
+		<item value="1000" key="org.eclipse.search.resultpage.limit"/>
+	</section>
 	<section name="DialogBounds_SearchDialog">
 		<item value="740" key="DIALOG_WIDTH"/>
 		<item value="318" key="DIALOG_Y_ORIGIN"/>
-		<item value="423" key="DIALOG_HEIGHT"/>
 		<item value="590" key="DIALOG_X_ORIGIN"/>
+		<item value="423" key="DIALOG_HEIGHT"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="Search">
@@ -31,11 +34,22 @@
 		<item value="false" key="CASE_SENSITIVE"/>
 		<item value="false" key="REG_EX_SEARCH"/>
 		<item value="false" key="SEARCH_DERIVED"/>
-		<item value="1" key="HISTORY_SIZE"/>
+		<item value="2" key="HISTORY_SIZE"/>
 		<section name="EXTENSIONS">
 			<item value="*.as" key="0"/>
 		</section>
 		<section name="HISTORY0">
+			<item value="false" key="isRegExSearch"/>
+			<item value="authorizer" key="textPattern"/>
+			<item value="0" key="scope"/>
+			<item value="true" key="ignoreCase"/>
+			<list key="fileNamePatterns">
+				<item value="*.as"/>
+			</list>
+			<list key="workingSets">
+			</list>
+		</section>
+		<section name="HISTORY1">
 			<item value="false" key="isRegExSearch"/>
 			<item value="Base64Encoder" key="textPattern"/>
 			<item value="0" key="scope"/>

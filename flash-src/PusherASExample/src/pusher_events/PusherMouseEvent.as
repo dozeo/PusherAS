@@ -61,16 +61,6 @@ package pusher_events
 			_relativeX = value;
 		}
 
-		public function get relativeY():Number
-		{
-			return _relativeY;
-		}
-
-		public function set relativeY(value:Number):void
-		{
-			_relativeY = value;
-		}
-
 
 	}
 }

@@ -35,7 +35,7 @@ package com.dozeo.pusheras
 	 */
 	public class Pusher extends EventDispatcher
 	{
-		private static const VERSION:String = '0.1';
+		private static const VERSION:String = '0.1.1';
 		
 		// pusheras vars
 		private var _pusherOptions:PusherOptions;
@@ -215,9 +215,9 @@ package com.dozeo.pusheras
 			
 			// define channel type
 			if(channelName.indexOf(PusherConstants.CHANNEL_NAME_PRIVATE_PREFIX) != -1)
-				pusherChannel = new PusherChannel(PusherChannel.PRIVATE, channelName, dispatchPusherEvent, true, _pusherOptions.applicationKey, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
+				pusherChannel = new PusherChannel(PusherChannel.PRIVATE, channelName, dispatchPusherEvent, true, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
 			else if(channelName.indexOf(PusherConstants.CHANNEL_NAME_PRESENCE_PREFIX) != -1)
-				pusherChannel = new PusherChannel(PusherChannel.PRESENCE, channelName, dispatchPusherEvent, true, _pusherOptions.applicationKey, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
+				pusherChannel = new PusherChannel(PusherChannel.PRESENCE, channelName, dispatchPusherEvent, true, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
 			else
 				pusherChannel = new PusherChannel(PusherChannel.PUBLIC, channelName, dispatchPusherEvent);
 			
@@ -244,7 +244,7 @@ package com.dozeo.pusheras
 			// create new pusher event
 			var pusherEvent:PusherEvent = new PusherEvent(PusherEvent.SUBSCRIBE);
 			pusherEvent.data.channel = pusherChannel.name;
-			pusherEvent.data.auth = pusherChannel.authenticationKey;
+			pusherEvent.data.auth = pusherChannel.authenticationSignature;
 			
 			// dispatch event to pusher service
 			dispatchPusherEvent(pusherEvent);

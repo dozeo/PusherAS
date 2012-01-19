@@ -1,9 +1,0 @@
-package com.dozeo.pusheras.channel
-{
-	public class PusherChannel
-	{
-		public function PusherChannel()
-		{
-		}
-	}
-}

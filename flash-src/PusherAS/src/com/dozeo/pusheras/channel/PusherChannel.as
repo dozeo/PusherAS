@@ -37,15 +37,14 @@ package com.dozeo.pusheras.channel
 		private var _type:String;
 		private var _name:String;
 		private var _pusherEventDispatcherCallback:Function;
-		private var _authenticationKey:String;
+		private var _authenticationSignature:String;
 		
 		private var _authenticationRequired:Boolean;
-		private var _appKey:String;
 		private var _socketID:String;
 		private var _authenticationEndPoint:String;
 		
 		public function PusherChannel(type:String, name:String, pusherEventDispatcherCallback:Function,
-									  authenticationRequired:Boolean = false, appKey:String = '', socketID:String = '',
+									  authenticationRequired:Boolean = false, socketID:String = '',
 									  authenticationEndPoint:String = '')
 		{
 			// copy vars
@@ -54,7 +53,6 @@ package com.dozeo.pusheras.channel
 			this._pusherEventDispatcherCallback = pusherEventDispatcherCallback;
 			
 			this._authenticationRequired = authenticationRequired;
-			this._appKey = appKey;
 			this._socketID = socketID;
 			this._authenticationEndPoint = authenticationEndPoint;
 
@@ -70,7 +68,7 @@ package com.dozeo.pusheras.channel
 				if(_authenticationEndPoint == '')
 					throw new Error('The authentication endpoint cannot be empty if authentication is enabled!');
 				
-				authenticate(_appKey, _socketID, _authenticationEndPoint);
+				authenticate(_socketID, _authenticationEndPoint);
 			}
 			else
 			{
@@ -91,23 +89,23 @@ package com.dozeo.pusheras.channel
 			
 			event.channel = _name;
 			event.event = PusherConstants.CLIENT_EVENT_NAME_PREFIX + event.event;
-			event.data.auth = _authenticationKey;
+			event.data.auth = _authenticationSignature;
 			
 			_pusherEventDispatcherCallback(event);
 		}
 		
-		private function authenticate(appKey:String, socketID:String, authenticationEndPoint:String):void
+		private function authenticate(socketID:String, authenticationEndPoint:String):void
 		{
 			var pusherAuthenticator:PusherAuthenticator = new PusherAuthenticator();
 			pusherAuthenticator.addEventListener(PusherAuthenticationEvent.SUCESSFULL, pusherAuthenticator_SUCESSFULL, false, 0, true);
 			pusherAuthenticator.addEventListener(PusherAuthenticationEvent.FAILED, pusherAuthenticator_FAILED, false, 0, true);
 			
-			pusherAuthenticator.authenticate(appKey, socketID, authenticationEndPoint, _name);
+			pusherAuthenticator.authenticate(socketID, authenticationEndPoint, _name);
 		}
 		
 		protected function pusherAuthenticator_SUCESSFULL(event:PusherAuthenticationEvent):void
 		{
-			_authenticationKey = event.signature;
+			_authenticationSignature = event.signature;
 			this.dispatchEvent(new PusherEvent(PusherChannelEvent.SETUP_COMPLETE));
 		}
 		
@@ -139,9 +137,9 @@ package com.dozeo.pusheras.channel
 			_pusherEventDispatcherCallback = value;
 		}
 
-		public function get authenticationKey():String
+		public function get authenticationSignature():String
 		{
-			return _authenticationKey;
+			return _authenticationSignature;
 		}
 
 		public function get type():String
