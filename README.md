@@ -1,9 +1,10 @@
 Pusher <http://pusher.com> ActionScript3 Client Library
 =============
 
-Small Library for Pusher connections from AS3 / Flash using the native event system.
+AS3 Pusher Protocol implementation using the Native Event System.
 
-… still under development ;)
+… still under development ;) (but check out the tags & example code)
+
 
 Usage
 -------
