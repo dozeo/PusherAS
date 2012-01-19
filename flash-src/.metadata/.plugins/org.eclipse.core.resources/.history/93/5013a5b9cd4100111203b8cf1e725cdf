@@ -1,0 +1,9 @@
+package com.dozeo.pusheras.auth
+{
+	public class PusherAuthenticator
+	{
+		public function PusherAuthenticator()
+		{
+		}
+	}
+}

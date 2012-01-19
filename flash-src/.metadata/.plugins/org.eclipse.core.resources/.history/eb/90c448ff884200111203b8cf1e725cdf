@@ -1,0 +1,142 @@
+// Copyright (c) 2012 dozeo GmbH
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+package
+{
+	import com.dozeo.pusheras.Pusher;
+	import com.dozeo.pusheras.channel.PusherChannel;
+	import com.dozeo.pusheras.events.PusherChannelEvent;
+	import com.dozeo.pusheras.events.PusherEvent;
+	import com.dozeo.pusheras.vo.PusherOptions;
+	
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.geom.Point;
+	import flash.utils.Timer;
+	
+	/**
+	 * Pusher <http://pusher.com> Example Application
+	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
+	 */
+	[SWF(width=1920,height=1080)]
+	public class PusherASExample extends Sprite
+	{
+		private static const APP_KEY:String = 'f1063b8b6dd3df1155d8';
+		private static const AUTH_ENDPOINT:String = 'http://localhost:8888/pusher_auth/auth.php';
+		private static const ORIGIN:String = 'http://localhost/';
+		private static const SECURE:Boolean = true;
+		
+		private var _pusher:Pusher;
+		private var _mouseEventChannel:PusherChannel;
+		private var _currentDragTarget:Sprite;
+		private var _dragTarget_Offset:Point;
+		
+		public function PusherASExample()
+		{
+			stage.stageWidth = 2000;
+			stage.stageHeight = 2000;
+			
+			var background:Sprite = new Sprite();
+			background.graphics.beginFill(0x333333);
+			background.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);
+			background.graphics.endFill();
+			
+			this.addChild(background);
+			
+			initPusherConnection();
+			createInterface();
+		}
+		
+		private function initPusherConnection():void
+		{
+			// setup new pusher options
+			var pusherOptions:PusherOptions = new PusherOptions();
+			pusherOptions.applicationKey = APP_KEY;
+			pusherOptions.auth_endpoint = AUTH_ENDPOINT;
+			pusherOptions.origin = ORIGIN;
+			pusherOptions.secure = SECURE;
+			
+			// create pusher client and connect to server
+			_pusher = new Pusher(pusherOptions);
+			_pusher.addEventListener(PusherEvent.CONNECTION_ESTABLISHED, pusher_CONNECTION_ESTABLISHED);
+			_pusher.connect();
+		}
+		
+		/**
+		 * On sucessfull pusher connection subscribe a new channel and hear for events
+		 * */
+		protected function pusher_CONNECTION_ESTABLISHED(event:PusherEvent):void
+		{
+			_mouseEventChannel = _pusher.subscribe('private-MouseEventChannel');
+			_mouseEventChannel.addEventListener(MouseEvent.MOUSE_MOVE, mouseEventChannel_MOUSE_MOVE);
+			
+			var timer:Timer = new Timer(1000);
+			timer.addEventListener(TimerEvent.TIMER, timer_TIMER);
+			timer.start();
+		}
+		
+		protected function timer_TIMER(event:TimerEvent):void
+		{
+			// TODO Auto-generated method stub
+			
+		}
+		
+		protected function mouseEventChannel_MOUSE_MOVE(event:PusherEvent):void
+		{
+			// TODO Auto-generated method stub
+			trace('mouse move' + event.data);
+		}
+		
+		private function createInterface():void
+		{
+			var sprite:Sprite = new Sprite();
+			sprite.graphics.beginFill(0xdc0000);
+			sprite.graphics.lineStyle(5, 0xdc0000, 0.3);
+			sprite.graphics.drawCircle(0, 0, 50);
+			sprite.graphics.endFill();
+			sprite.addEventListener(MouseEvent.MOUSE_DOWN, dragObejct_MOUSE_DOWN);
+			sprite.addEventListener(MouseEvent.MOUSE_UP, dragObejct_MOUSE_UP);
+			
+			sprite.x = this.stage.stageWidth / 2 - sprite.width / 2;
+			sprite.y = this.stage.stageHeight / 2 - sprite.height / 2;
+			
+			this.addChild(sprite);
+		}
+		
+		protected function dragObejct_MOUSE_DOWN(event:MouseEvent):void
+		{
+			_dragTarget_Offset = new Point(event.localX, event.localY);
+			_currentDragTarget = event.currentTarget as Sprite;
+
+			stage.addEventListener(MouseEvent.MOUSE_MOVE, stage_MOUSE_MOVE);
+		}
+
+		protected function stage_MOUSE_MOVE(event:MouseEvent):void
+		{
+			_currentDragTarget.x = event.stageX - _dragTarget_Offset.x;
+			_currentDragTarget.y = event.stageY - _dragTarget_Offset.y;
+			
+			transmitDragObjectUpdates(event);
+		}
+		
+		protected function dragObejct_MOUSE_UP(event:MouseEvent):void
+		{
+			stage.removeEventListener(MouseEvent.MOUSE_MOVE, stage_MOUSE_MOVE);
+		}
+		
+		private function transmitDragObjectUpdates(event:MouseEvent):void
+		{
+			var pusherEvent:PusherEvent = new PusherEvent('test');
+			_mouseEventChannel.dispatchPusherEvent(pusherEvent);
+		}
+	}
+}

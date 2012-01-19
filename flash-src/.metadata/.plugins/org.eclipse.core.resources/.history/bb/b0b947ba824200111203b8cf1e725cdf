@@ -1,0 +1,64 @@
+// Copyright (c) 2012 dozeo GmbH
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+// WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+package
+{
+	import com.dozeo.pusheras.Pusher;
+	import com.dozeo.pusheras.channel.PusherChannel;
+	import com.dozeo.pusheras.events.PusherChannelEvent;
+	import com.dozeo.pusheras.events.PusherEvent;
+	import com.dozeo.pusheras.vo.PusherOptions;
+	
+	import flash.display.Sprite;
+	import flash.events.Event;
+	
+	/**
+	 * Pusher <http://pusher.com> Example Application
+	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
+	 */
+	public class PusherASExample extends Sprite
+	{
+		private static const APP_KEY:String = 'f1063b8b6dd3df1155d8';
+		private static const AUTH_ENDPOINT:String = 'http://localhost:8888/pusher_auth/auth.php';
+		private static const ORIGIN:String = 'http://localhost/';
+		private static const SECURE:Boolean = true;
+		
+		private var _pusher:Pusher;
+		
+		public function PusherASExample()
+		{
+
+		}
+		
+		private function initPusherConnection():void
+		{
+			// setup new pusher options
+			var pusherOptions:PusherOptions = new PusherOptions();
+			pusherOptions.applicationKey = APP_KEY;
+			pusherOptions.auth_endpoint = AUTH_ENDPOINT;
+			pusherOptions.origin = ORIGIN;
+			pusherOptions.secure = SECURE;
+			
+			// create pusher client and connect to server
+			_pusher = new Pusher(pusherOptions);
+			_pusher.addEventListener(PusherEvent.CONNECTION_ESTABLISHED, pusher_CONNECTION_ESTABLISHED);
+			_pusher.connect();
+		}
+		
+		/**
+		 * On sucessfull pusher connection subscribe a new channel and hear for events
+		 * */
+		protected function pusher_CONNECTION_ESTABLISHED(event:PusherEvent):void
+		{
+
+		}
+		
+	}
+}

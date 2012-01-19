@@ -1,0 +1,12 @@
+package pusher_events
+{
+	import com.dozeo.pusheras.events.PusherEvent;
+	
+	public class PusherMouseEvent extends PusherEvent
+	{
+		public function PusherMouseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		{
+			super(type, bubbles, cancelable);
+		}
+	}
+}

@@ -13,16 +13,16 @@ package com.dozeo.pusheras
 	import com.adobe.serialization.json.JSON;
 	import com.adobe.serialization.json.JSONDecoder;
 	import com.dozeo.pusheras.channel.PusherChannel;
+	import com.dozeo.pusheras.events.PusherChannelEvent;
 	import com.dozeo.pusheras.events.PusherEvent;
 	import com.dozeo.pusheras.logger.WebSocketLogger;
+	import com.dozeo.pusheras.utils.PusherConstants;
 	import com.dozeo.pusheras.vo.PusherOptions;
 	import com.dozeo.pusheras.vo.PusherStatus;
 	import com.dozeo.pusheras.vo.WebsocketStatus;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
-	
-	import mx.charts.CategoryAxis;
 	
 	import net.gimite.websocket.IWebSocketLogger;
 	import net.gimite.websocket.WebSocket;
@@ -35,6 +35,8 @@ package com.dozeo.pusheras
 	 */
 	public class Pusher extends EventDispatcher
 	{
+		private static const VERSION:String = '0.1';
+		
 		// pusheras vars
 		private var _pusherOptions:PusherOptions;
 		private var _pusherStatus:PusherStatus;
@@ -44,7 +46,7 @@ package com.dozeo.pusheras
 		private var _websocketStatus:WebsocketStatus;
 		
 		// channel bucket
-		private var _channelBucket:Array;
+		protected var _channelBucket:Array;
 		
 		/**
 		 * @param options all required options for the pusher connection
@@ -71,7 +73,6 @@ package com.dozeo.pusheras
 		public function connect():void
 		{
 			// connect to websocket server
-			
 			connectWebsocket();
 		}
 		
@@ -109,10 +110,10 @@ package com.dozeo.pusheras
 			// get pusher url
 			var pusherURL:String;
 			if(_pusherOptions.encrypted || _pusherOptions.secure)
-				pusherURL = _pusherOptions.pusherURL;
-			else
 				pusherURL = _pusherOptions.pusherSecureURL;
-			
+			else
+				pusherURL = _pusherOptions.pusherURL;
+
 			// create websocket instance
 			_websocket = new WebSocket(_websocketStatus.connectionIndex,
 										pusherURL,
@@ -134,7 +135,7 @@ package com.dozeo.pusheras
 		
 		protected function _websocket_OPEN(event:WebSocketEvent):void
 		{
-			log('_websocket_OPEN Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			//log('_websocket_OPEN Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
 			
 			// store status
 			_websocketStatus.connected = true;
@@ -143,22 +144,22 @@ package com.dozeo.pusheras
 		
 		protected function _websocket_CLOSE(event:WebSocketEvent):void
 		{
-			log('_websocket_CLOSE Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			//log('_websocket_CLOSE Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
 			// TODO Auto-generated method stub
 			
 		}
 		
 		protected function _websocket_ERROR(event:WebSocketEvent):void
 		{
-			log('_websocket_ERROR Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
+			//log('_websocket_ERROR Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
 			// TODO Auto-generated method stub
 		}
 		
 		protected function _websocket_MESSAGE(event:WebSocketEvent):void
 		{
+			// try to parse new pusher event from websocket message
 			try
 			{
-				// try to create new pusher event from websocket message
 				var pusherEvent:PusherEvent = PusherEvent.parse(event.message);				
 			}
 			catch(e:Error)
@@ -166,6 +167,8 @@ package com.dozeo.pusheras
 				log('websocket message error: ' + e.message);
 				return;
 			}
+			
+			log('(received):' + pusherEvent.toJSON());
 			
 			// look in the channel bucket if channel subscribed and dispatch event on it
 			// very simple logic with great performance ;)
@@ -182,16 +185,13 @@ package com.dozeo.pusheras
 			}
 			else
 			{
-				// redispatch pusher event
+				// redispatch pusher event global
 				this.dispatchEvent(pusherEvent);
-			}
-			
-			log('pusher event: ' + pusherEvent.toJSON());
+			}		
 		}
 		
 		protected function this_CONNECTION_ESTABLISHED(event:PusherEvent):void
 		{
-			log('this_CONNECTION_ESTABLISHED');
 			_pusherStatus.connected = true;
 			
 			if(event.data.hasOwnProperty('socket_id'))
@@ -200,7 +200,7 @@ package com.dozeo.pusheras
 		
 		/**
 		 * Subscribes a pusher channel with the given name.
-		 * 
+		 * add native event listeners to it
 		 * @param channelName The name of your channel
 		 * @return a chanel instance for event listening and dispatching
 		 */	
@@ -210,20 +210,49 @@ package com.dozeo.pusheras
 			if(_pusherStatus.connected == false)
 				throw new Error('cannot subscribe "' + channelName + '" because the pusher service is not connected!');
 			
-			// create new channel object
-			var pusherChannel:PusherChannel = new PusherChannel(channelName, dispatchPusherEvent);
-			_channelBucket.push(pusherChannel);
+			// pusher channel implentation
+			var pusherChannel:PusherChannel;
 			
-			// create new pusher event
-			var pusherEvent:PusherEvent = new PusherEvent(PusherEvent.SUBSCRIBE);
-			pusherEvent.data.channel = channelName;
+			// define channel type
+			if(channelName.indexOf(PusherConstants.CHANNEL_NAME_PRIVATE_PREFIX) != -1)
+				pusherChannel = new PusherChannel(PusherChannel.PRIVATE, channelName, dispatchPusherEvent, true, _pusherOptions.applicationKey, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
+			else if(channelName.indexOf(PusherConstants.CHANNEL_NAME_PRESENCE_PREFIX) != -1)
+				pusherChannel = new PusherChannel(PusherChannel.PRESENCE, channelName, dispatchPusherEvent, true, _pusherOptions.applicationKey, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
+			else
+				pusherChannel = new PusherChannel(PusherChannel.PUBLIC, channelName, dispatchPusherEvent);
 			
-			// dispatch event to pusher service
-			dispatchPusherEvent(pusherEvent);
+			// add internal channel event listeners
+			pusherChannel.addEventListener(PusherChannelEvent.SETUP_COMPLETE, pusherChannel_SETUP_COMPLETE);
+			
+			// initialize channel (perform auth request etc.)
+			pusherChannel.init();
 			
 			return pusherChannel;
 		}
 		
+		/**
+		 * subscribe channel after setup complete event
+		 * */
+		protected function pusherChannel_SETUP_COMPLETE(event:Event):void
+		{
+			// get channel
+			var pusherChannel:PusherChannel = event.target as PusherChannel;
+			
+			// create new channel object
+			_channelBucket.push(pusherChannel);
+			
+			// create new pusher event
+			var pusherEvent:PusherEvent = new PusherEvent(PusherEvent.SUBSCRIBE);
+			pusherEvent.data.channel = pusherChannel.name;
+			pusherEvent.data.auth = pusherChannel.authenticationKey;
+			
+			// dispatch event to pusher service
+			dispatchPusherEvent(pusherEvent);
+		}
+		
+		/**
+		 * Remove and unsubscribe channel
+		 * */
 		public function unsubscribe(channelName:String):void
 		{
 			// create new pusher event
@@ -253,11 +282,12 @@ package com.dozeo.pusheras
 			
 			try
 			{
+				log('(send):' + event.toJSON());
 				_websocket.send(event.toJSON());
 			}
 			catch(e:Error)
 			{
-				log('dispatchPusherEvent failed: ' + e.message);
+				log('pusher event dispatching failed: ' + e.message);
 			}
 		}
 		

@@ -1,0 +1,7 @@
+package com.dozeo.pusheras.channel
+{
+	public interface IPusherChannel
+	{
+		
+	}
+}

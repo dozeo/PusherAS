@@ -5,8 +5,10 @@
     <classEntry path="com.dozeo.pusheras.logger.WebSocketLogger"/>
     <classEntry path="com.dozeo.pusheras.events.PusherEvent"/>
     <classEntry path="trash.PusherEventUserInfo"/>
-    <classEntry path="com.dozeo.pusheras.utils.PusherStatus"/>
     <classEntry path="com.dozeo.pusheras.channel.PusherChannel"/>
+    <classEntry path="com.dozeo.pusheras.auth.PusherAuthenticator"/>
+    <classEntry path="com.dozeo.pusheras.events.PusherAuthenticationEvent"/>
+    <classEntry path="com.dozeo.pusheras.events.PusherChannelEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

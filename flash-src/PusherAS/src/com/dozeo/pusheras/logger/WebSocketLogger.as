@@ -25,12 +25,12 @@ package com.dozeo.pusheras.logger
 		
 		public function log(message:String):void
 		{
-			trace('WebSocketLogger: ' + message);
+			//trace('WebSocketLogger: ' + message);
 		}
 		
 		public function error(message:String):void
 		{
-			trace('WebSocketLogger: ' + message)
+			//trace('WebSocketLogger: ' + message)
 		}
 	}
 }

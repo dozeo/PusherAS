@@ -11,6 +11,7 @@
 package com.dozeo.pusheras.events
 {
 	import com.adobe.serialization.json.JSON;
+	import com.dozeo.pusheras.utils.PusherConstants;
 	
 	import flash.events.Event;
 	import flash.sampler.NewObjectSample;
@@ -23,21 +24,19 @@ package com.dozeo.pusheras.events
 	{
 		
 		// constants
-		static public const CONNECTION_ESTABLISHED:String = "pusher:connection_established";
-		static public const CONNECTION_DISCONNECTED:String = "pusher:connection_disconnected";
-		static public const CONNECTION_FAILED:String = "pusher:connection_failed";
-		static public const ERROR_EVENT_NAME:String = "pusher:error";
-		static public const SUBSCRIPTION_SUCCEEDED:String = "pusher:subscription_succeeded";
-		static public const MEMBER_ADDED:String = "pusher:member_added";
-		static public const MEMBER_REMOVED:String = "pusher:member_removed";
-		static public const SUBSCRIBE:String = "pusher:subscribe";
-		static public const UNSUBSCRIBE:String = "pusher:unsubscribe";
+		static public const CONNECTION_ESTABLISHED:String = PusherConstants.CONNECTION_ESTABLISHED_EVENT_NAME;
+		static public const CONNECTION_DISCONNECTED:String = PusherConstants.CONNECTION_DISCONNECTED_EVENT_NAME;
+		static public const CONNECTION_FAILED:String = PusherConstants.CONNECTION_FAILED_EVENT_NAME;
+		static public const ERROR_EVENT_NAME:String = PusherConstants.ERROR_EVENT_NAME;
+		static public const SUBSCRIPTION_SUCCEEDED:String = PusherConstants.SUBSCRIPTION_SUCCEEDED_EVENT_NAME;
+		static public const MEMBER_ADDED:String = PusherConstants.MEMBER_ADDED_EVENT_NAME;
+		static public const MEMBER_REMOVED:String = PusherConstants.MEMBER_REMOVED_EVENT_NAME;
+		static public const SUBSCRIBE:String = PusherConstants.SUBSCRIBE_EVENT_NAME;
+		static public const UNSUBSCRIBE:String = PusherConstants.UNSUBSCRIBE_EVENT_NAME;
 		
 		// vars
 		private var _event:String;
 		private var _channel:String;
-		private var _message:String;
-		private var _code:int;
 		private var _data:Object;
 		
 		public function PusherEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false):void 
@@ -61,36 +60,6 @@ package com.dozeo.pusheras.events
 		public function set event(value:String):void
 		{
 			this._event = value;
-		}
-		
-		public function get message():String
-		{
-			return this._message;
-		}
-		
-		public function set message(value:String):void
-		{
-			this._message = value;
-		}
-		
-		public function get code():int
-		{
-			return this._code;
-		}
-		
-		public function set code(value:int):void
-		{
-			this._code = value;
-		}
-
-		public function get socket_id():Number
-		{
-			return this._code;
-		}
-		
-		public function set socket_id(value:Number):void
-		{
-			this._code = value;
 		}
 		
 		public function get data():Object
@@ -120,18 +89,26 @@ package com.dozeo.pusheras.events
 		 * */
 		public static function parse(data:String):PusherEvent
 		{
+
 			// check if message object is null
 			if(data == null)
 				throw new Error('data cannot be empty');
 			
 			// decode data JSON string to an raw object
 			var decodedObject:Object = JSON.decode(decodeURIComponent(data));
-			
+	
 			// parse "event" property
 			if(decodedObject.hasOwnProperty('event'))
 			{
+				// replace client event name prefix
+				var eventName:String =  decodedObject.event;
+				if(eventName.indexOf(PusherConstants.CLIENT_EVENT_NAME_PREFIX) != -1)
+				{
+					eventName = eventName.replace(PusherConstants.CLIENT_EVENT_NAME_PREFIX, '');	
+				}
+				
 				// create new pusher event
-				var pusherEvent:PusherEvent = new PusherEvent(decodedObject.event);
+				var pusherEvent:PusherEvent = new PusherEvent(eventName);
 			}
 			else
 			{
@@ -141,21 +118,9 @@ package com.dozeo.pusheras.events
 			// parse "data" property
 			if(decodedObject.hasOwnProperty('data'))
 			{
-				pusherEvent.data = JSON.decode(decodeURIComponent(decodedObject.data));
-			}
-			
-			// parse "code" property
-			if(decodedObject.hasOwnProperty('code'))
-			{
-				pusherEvent.code = decodedObject.code;
+				pusherEvent.data = JSON.decode(decodeURIComponent(decodedObject.data));	
 			}
 
-			// parse "socket_id" property
-			if(decodedObject.hasOwnProperty('socket_id'))
-			{
-				pusherEvent.socket_id = decodedObject.socket_id;
-			}
-			
 			// parse "channel" property
 			if(decodedObject.hasOwnProperty('channel'))
 			{
@@ -173,11 +138,9 @@ package com.dozeo.pusheras.events
 		public function toJSON():String
 		{
 			var pusherEvent:Object = new Object();
-			pusherEvent.code = this.code;
 			pusherEvent.channel = this.channel;
 			pusherEvent.data = this.data;
 			pusherEvent.event = this.event;
-			pusherEvent.message = this.message;
 	
 			var eventString:String = JSON.encode(pusherEvent);
 			return eventString;

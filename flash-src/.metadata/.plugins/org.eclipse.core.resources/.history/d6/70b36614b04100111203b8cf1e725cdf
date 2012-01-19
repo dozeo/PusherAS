@@ -1,0 +1,11 @@
+package com.dozeo.pusheras.channel
+{
+	import com.dozeo.pusheras.events.PusherEvent;
+
+	public interface IPusherChannel
+	{
+		public function dispatchPusherEvent(event:PusherEvent):void
+			
+		public function get name():String
+	}
+}

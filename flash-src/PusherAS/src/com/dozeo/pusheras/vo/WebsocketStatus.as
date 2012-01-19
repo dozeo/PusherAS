@@ -19,7 +19,7 @@ package com.dozeo.pusheras.vo
 		private var _connectionIndex:int = -1;
 		private var _connected:Boolean = false;
 		private var _connecting:Boolean = false;
-		private var _socketID:Number = -1;
+		private var _socketID:String = '';
 		
 		public function WebsocketStatus():void 
 		{ 
@@ -58,12 +58,12 @@ package com.dozeo.pusheras.vo
 			this._connecting = value;
 		}
 
-		public function get socketID():Number
+		public function get socketID():String
 		{
 			return _socketID;
 		}
 
-		public function set socketID(value:Number):void
+		public function set socketID(value:String):void
 		{
 			_socketID = value;
 		}

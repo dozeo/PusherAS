@@ -11,9 +11,18 @@
 package com.dozeo.pusheras.channel
 {
 	import com.dozeo.pusheras.Pusher;
+	import com.dozeo.pusheras.auth.PusherAuthenticator;
+	import com.dozeo.pusheras.events.PusherAuthenticationEvent;
+	import com.dozeo.pusheras.events.PusherChannelEvent;
 	import com.dozeo.pusheras.events.PusherEvent;
+	import com.dozeo.pusheras.utils.PusherConstants;
 	
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
+	import flash.net.URLVariables;
 
 	/**
 	 * Pusher <http://pusher.com> Channel
@@ -21,22 +30,57 @@ package com.dozeo.pusheras.channel
 	 */
 	public class PusherChannel extends EventDispatcher
 	{
-		// constants
-		static public const CLIENT_EVENT_NAME_PREFIX:String = "client-";
+		static public const PUBLIC:String = 'public';
+		static public const PRIVATE:String = 'private';
+		static public const PRESENCE:String = 'presence';
 		
+		private var _type:String;
 		private var _name:String;
 		private var _pusherEventDispatcherCallback:Function;
+		private var _authenticationKey:String;
 		
-		public function PusherChannel(name:String, pusherEventDispatcherCallback:Function)
+		private var _authenticationRequired:Boolean;
+		private var _appKey:String;
+		private var _socketID:String;
+		private var _authenticationEndPoint:String;
+		
+		public function PusherChannel(type:String, name:String, pusherEventDispatcherCallback:Function,
+									  authenticationRequired:Boolean = false, appKey:String = '', socketID:String = '',
+									  authenticationEndPoint:String = '')
 		{
 			// copy vars
+			this._type = type;
 			this._name = name;
 			this._pusherEventDispatcherCallback = pusherEventDispatcherCallback;
+			
+			this._authenticationRequired = authenticationRequired;
+			this._appKey = appKey;
+			this._socketID = socketID;
+			this._authenticationEndPoint = authenticationEndPoint;
+
+		}
+		
+		public function init():void
+		{
+			// if authentication is required (private / presence channels) load the signature from the server
+			// and dispatch the complete event after it
+			// else dispatch complete event immediately
+			if(_authenticationRequired)
+			{
+				if(_authenticationEndPoint == '')
+					throw new Error('The authentication endpoint cannot be empty if authentication is enabled!');
+				
+				authenticate(_appKey, _socketID, _authenticationEndPoint);
+			}
+			else
+			{
+				this.dispatchEvent(new PusherEvent(PusherChannelEvent.SETUP_COMPLETE));
+			}
 		}
 		
 		/**
 		 * Dispatch pusher event on the channel
-		 * notice: the channel name and the "cleint" prefix will be set
+		 * notice: the channel name and the "client" prefix will be set
 		 * automatically 
 		 * @param Pusher event
 		 * */
@@ -46,9 +90,30 @@ package com.dozeo.pusheras.channel
 				return;
 			
 			event.channel = _name;
-			event.event = CLIENT_EVENT_NAME_PREFIX + event.event;
+			event.event = PusherConstants.CLIENT_EVENT_NAME_PREFIX + event.event;
+			event.data.auth = _authenticationKey;
 			
 			_pusherEventDispatcherCallback(event);
+		}
+		
+		private function authenticate(appKey:String, socketID:String, authenticationEndPoint:String):void
+		{
+			var pusherAuthenticator:PusherAuthenticator = new PusherAuthenticator();
+			pusherAuthenticator.addEventListener(PusherAuthenticationEvent.SUCESSFULL, pusherAuthenticator_SUCESSFULL, false, 0, true);
+			pusherAuthenticator.addEventListener(PusherAuthenticationEvent.FAILED, pusherAuthenticator_FAILED, false, 0, true);
+			
+			pusherAuthenticator.authenticate(appKey, socketID, authenticationEndPoint, _name);
+		}
+		
+		protected function pusherAuthenticator_SUCESSFULL(event:PusherAuthenticationEvent):void
+		{
+			_authenticationKey = event.signature;
+			this.dispatchEvent(new PusherEvent(PusherChannelEvent.SETUP_COMPLETE));
+		}
+		
+		protected function pusherAuthenticator_FAILED(event:PusherAuthenticationEvent):void
+		{
+			this.dispatchEvent(new PusherEvent(PusherChannelEvent.SETUP_FAILED));
 		}
 		
 		/**
@@ -68,15 +133,20 @@ package com.dozeo.pusheras.channel
 		{
 			_name = value;
 		}
-
-		public function get pusherEventDispatcherCallback():Function
-		{
-			return _pusherEventDispatcherCallback;
-		}
-
+		
 		public function set pusherEventDispatcherCallback(value:Function):void
 		{
 			_pusherEventDispatcherCallback = value;
+		}
+
+		public function get authenticationKey():String
+		{
+			return _authenticationKey;
+		}
+
+		public function get type():String
+		{
+			return _type;
 		}
 
 
