@@ -77,7 +77,7 @@ package
 		}
 		
 		/**
-		 * On sucessfull pusher connection subscribe a new channel and hear for events
+		 * On successful connection subscribe a new channel and hear for events
 		 * */
 		protected function pusher_CONNECTION_ESTABLISHED(event:PusherEvent):void
 		{
