@@ -1,9 +1,0 @@
-package com.dozeo.pusheras.vo
-{
-	public class WebsocketStatusVO
-	{
-		public function WebsocketStatusVO()
-		{
-		}
-	}
-}

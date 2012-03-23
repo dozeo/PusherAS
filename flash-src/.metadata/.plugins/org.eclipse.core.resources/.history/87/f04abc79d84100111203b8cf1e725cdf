@@ -1,9 +1,0 @@
-package com.dozeo.pusheras.events
-{
-	public class PusherAuthenticationEvent
-	{
-		public function PusherAuthenticationEvent()
-		{
-		}
-	}
-}

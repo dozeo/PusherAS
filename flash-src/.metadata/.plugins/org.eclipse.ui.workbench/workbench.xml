@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="43" version="2.0">
 <workbenchAdvisor/>
-<window height="830" maximized="true" width="1920" x="1680" y="0">
+<window height="1028" maximized="true" width="1676" x="1680" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -31,13 +31,48 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="5"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="6"/>
+<part id="7"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherASExample.as" partName="PusherASExample.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherASExample/src/PusherASExample.as" title="PusherASExample.as" tooltip="PusherASExample/src/PusherASExample.as" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherASExample/src/PusherASExample.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="62" selectionOffset="2310" selectionTopPixel="465"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2745" selectionTopPixel="703"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Pusher.as" partName="Pusher.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherAS/src/com/dozeo/pusheras/Pusher.as" title="Pusher.as" tooltip="PusherAS/src/com/dozeo/pusheras/Pusher.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherAS/src/com/dozeo/pusheras/Pusher.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="9285" selectionTopPixel="0"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherOptions.as" partName="PusherOptions.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as" title="PusherOptions.as" tooltip="PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="1" selectionOffset="1343" selectionTopPixel="0"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherEvent.as" partName="PusherEvent.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherAS/src/com/dozeo/pusheras/events/PusherEvent.as" title="PusherEvent.as" tooltip="PusherAS/src/com/dozeo/pusheras/events/PusherEvent.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherAS/src/com/dozeo/pusheras/events/PusherEvent.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4111" selectionTopPixel="0"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherConstants.as" partName="PusherConstants.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as" title="PusherConstants.as" tooltip="PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="1690" selectionTopPixel="0"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherChannel.as" partName="PusherChannel.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as" title="PusherChannel.as" tooltip="PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="12" selectionOffset="3175" selectionTopPixel="269"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherAuthenticator.as" partName="PusherAuthenticator.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherAS/src/com/dozeo/pusheras/auth/PusherAuthenticator.as" title="PusherAuthenticator.as" tooltip="PusherAS/src/com/dozeo/pusheras/auth/PusherAuthenticator.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherAS/src/com/dozeo/pusheras/auth/PusherAuthenticator.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1516" selectionTopPixel="375"/>
+</editor>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="WebSocketLogger.as" partName="WebSocketLogger.as" path="/Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src/PusherAS/src/com/dozeo/pusheras/logger/WebSocketLogger.as" title="WebSocketLogger.as" tooltip="PusherAS/src/com/dozeo/pusheras/logger/WebSocketLogger.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/PusherAS/src/com/dozeo/pusheras/logger/WebSocketLogger.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -54,20 +89,16 @@
 <view id="com.adobe.flexbuilder.packageexplorer" partName="Paket-Explorer">
 <viewState LINK_NAVIGATOR_TO_EDITOR="0" fpeIsFlat="0" fpeSortBy="1" sorter="1">
 <fpeExpanded>
-<fpeElement fpePath="/Hurlant"/>
-<fpeElement fpePath="/PusherAS"/>
 <fpeElement fpePath="/PusherAS/src"/>
+<fpeElement fpePath="/PusherAS/src/com"/>
 <fpeElement fpePath="/PusherAS/src/com/dozeo/pusheras"/>
 <fpeElement fpePath="/PusherAS/src/com/dozeo/pusheras/auth"/>
 <fpeElement fpePath="/PusherAS/src/com/dozeo/pusheras/channel"/>
 <fpeElement fpePath="/PusherAS/src/com/dozeo/pusheras/events"/>
 <fpeElement fpePath="/PusherAS/src/com/dozeo/pusheras/logger"/>
-<fpeElement fpePath="/PusherAS/src/com/dozeo/pusheras/utils"/>
 <fpeElement fpePath="/PusherAS/src/com/dozeo/pusheras/vo"/>
-<fpeElement fpePath="/PusherASExample"/>
 <fpeElement fpePath="/PusherASExample/src"/>
 <fpeElement fpePath="/PusherASExample/src/%typeDefaultPackage"/>
-<fpeElement fpePath="/PusherASExample/src/pusher_events"/>
 <fpeElement fpePath="/PusherASExample/html-template"/>
 </fpeExpanded>
 <fpeSelection>
@@ -93,12 +124,6 @@
 <filter element="*.class" isEnabled="false"/>
 <filter element=".*" isEnabled="false"/>
 </filters>
-<expanded>
-<element path="/Hurlant"/>
-<element path="/PusherAS"/>
-<element path="/PusherASExample"/>
-<element path="/PusherASExample/html-template"/>
-</expanded>
 <selection>
 <element path="/PusherAS"/>
 </selection>
@@ -117,16 +142,14 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Probleme">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Probleme">
 <expanded>
-<category IMemento.internal.id="Fehler"/>
-<category IMemento.internal.id="Fehler (7 Elemente)"/>
+<category IMemento.internal.id="Fehler (1 Element)"/>
 </expanded>
-<columnWidths org.eclipse.ui.ide.locationField="84" org.eclipse.ui.ide.markerType="114" org.eclipse.ui.ide.pathField="144" org.eclipse.ui.ide.resourceField="114" org.eclipse.ui.ide.severityAndDescriptionField="737"/>
+<columnWidths org.eclipse.ui.ide.locationField="0" org.eclipse.ui.ide.markerType="0" org.eclipse.ui.ide.pathField="0" org.eclipse.ui.ide.resourceField="0" org.eclipse.ui.ide.severityAndDescriptionField="0"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
-<DESCENDING_FIELDS IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 </viewState>
 </view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Konsole">
@@ -631,7 +654,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="bottomLayout" ratio="0.7544964" ratioLeft="839" ratioRight="273" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottomLayout" ratio="0.69694245" ratioLeft="775" ratioRight="337" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Probleme"/>
 <page content="com.adobe.flexbuilder.dcrad.views.DataServicesView" label="Daten/Dienste"/>
@@ -738,43 +761,30 @@
 <view id="org.eclipse.debug.ui.BreakpointView"/>
 <view id="org.eclipse.debug.ui.ExpressionView"/>
 <fastViewBars/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.DebugView" label="Debuggen"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="Debuggen"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74977577" ratioLeft="836" ratioRight="279" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Konsole"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74977577" ratioLeft="836" ratioRight="279" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Konsole"/>
 <page content="com.adobe.flexbuilder.dcrad.views.DataServicesView" label="Daten/Dienste"/>
 <page content="com.adobe.flexbuilder.monitors.network.view.NetworkMonitorView" label="Netzwerküberwachung"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.32894737" ratioLeft="275" ratioRight="561" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
-<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.VariableView" label="Variablen"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="Variablen"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Haltepunkte"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Ausdrücke"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
@@ -787,165 +797,168 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/auth/PusherAuthenticator.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/Pusher.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherASExample/src/PusherASExample.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherASExample/src/pusher_events/PusherMouseEvent.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/events/PusherEvent.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/events/PusherAuthenticationEvent.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/as3corelib/src/com/adobe/serialization/json/JSONTokenizer.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/events/PusherEvent.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/auth/PusherAuthenticator.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherASExample/src/PusherASExample.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/Pusher.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/PusherAS/src/com/dozeo/pusheras/logger/WebSocketLogger.as"/>
 </editors>
-<item historyLabel="PusherAuthenticator.as" index="0">
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="5797" y="11"/>
+</item>
+<item historyLabel="PusherEvent.as" index="3">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="5823" y="5"/>
+</item>
+<item historyLabel="PusherEvent.as" index="3">
+<position info="not_deleted" x="3329" y="6"/>
+</item>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="5823" y="5"/>
+</item>
+<item historyLabel="PusherEvent.as" index="3">
+<position info="not_deleted" x="3329" y="6"/>
+</item>
+<item historyLabel="PusherConstants.as" index="4">
+<position info="not_deleted" x="2549" y="0"/>
+</item>
+<item historyLabel="PusherOptions.as" index="2">
+<position info="not_deleted" x="4995" y="15"/>
+</item>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="5871" y="0"/>
+</item>
+<item historyLabel="PusherEvent.as" index="3">
 <position/>
 </item>
-<item historyLabel="PusherEvent.as" index="5">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="PusherConstants.as" index="4">
+<position info="not_deleted" x="1690" y="7"/>
 </item>
-<item historyLabel="PusherMouseEvent.as" index="4">
-<position info="not_deleted" x="281" y="0"/>
+<item historyLabel="PusherOptions.as" index="2">
+<position info="not_deleted" x="4995" y="15"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="8888" y="0"/>
-</item>
-<item historyLabel="PusherASExample.as" index="3">
+<item historyLabel="PusherEvent.as" index="3">
 <position/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="4905" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="5917" y="7"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="1441" y="43"/>
+<item historyLabel="PusherEvent.as" index="3">
+<position/>
 </item>
-<item historyLabel="PusherChannel.as" index="2">
-<position info="not_deleted" x="3911" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="5917" y="7"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="8888" y="0"/>
+<item historyLabel="PusherEvent.as" index="3">
+<position info="not_deleted" x="4111" y="0"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="3676" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="5785" y="11"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="3455" y="0"/>
+<item historyLabel="PusherEvent.as" index="3">
+<position info="not_deleted" x="4111" y="0"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="5125" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="6156" y="0"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="5111" y="0"/>
-</item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="5175" y="0"/>
-</item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="1939" y="0"/>
-</item>
-<item historyLabel="PusherAuthenticationEvent.as" index="6">
+<item historyLabel="PusherChannel.as" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PusherAuthenticator.as" index="0">
-<position info="not_deleted" x="1922" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="6378" y="11"/>
 </item>
-<item historyLabel="JSONTokenizer.as" index="7">
-<position info="not_deleted" x="18594" y="14"/>
+<item historyLabel="PusherASExample.as" index="1">
+<position info="not_deleted" x="5478" y="1"/>
 </item>
-<item historyLabel="PusherAuthenticator.as" index="0">
-<position info="not_deleted" x="2050" y="11"/>
+<item historyLabel="PusherChannel.as" index="5">
+<position info="not_deleted" x="3810" y="5"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="2085" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="9596" y="0"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="8888" y="0"/>
+<item historyLabel="PusherChannel.as" index="5">
+<position info="not_deleted" x="3810" y="5"/>
 </item>
-<item historyLabel="PusherOptions.as" index="8">
-<position info="not_deleted" x="1949" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="7461" y="19"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6303" y="13"/>
+<item historyLabel="PusherChannel.as" index="5">
+<position info="not_deleted" x="2474" y="281"/>
 </item>
-<item historyLabel="PusherChannel.as" index="2">
-<position info="not_deleted" x="4060" y="0"/>
+<item historyLabel="Pusher.as" index="0">
+<position info="not_deleted" x="8114" y="4"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6322" y="0"/>
+<item historyLabel="PusherChannel.as" index="5">
+<position info="not_deleted" x="3175" y="12"/>
 </item>
-<item historyLabel="PusherChannel.as" index="2">
-<position info="not_deleted" x="4060" y="0"/>
-</item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="3548" y="0"/>
-</item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6322" y="0"/>
-</item>
-<item historyLabel="PusherChannel.as" index="2">
-<position info="not_deleted" x="4358" y="0"/>
-</item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6288" y="0"/>
-</item>
-<item historyLabel="PusherEvent.as" index="5">
+<item historyLabel="PusherAuthenticator.as" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6288" y="0"/>
+<item historyLabel="PusherASExample.as" index="7">
+<position info="not_deleted" x="5478" y="1"/>
 </item>
-<item historyLabel="PusherEvent.as" index="5">
-<position info="not_deleted" x="4272" y="0"/>
+<item historyLabel="Pusher.as" index="8">
+<position info="not_deleted" x="8114" y="4"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6288" y="0"/>
+<item historyLabel="PusherOptions.as" index="9">
+<position info="not_deleted" x="4995" y="15"/>
 </item>
-<item historyLabel="PusherEvent.as" index="5">
-<position info="not_deleted" x="4272" y="0"/>
+<item historyLabel="PusherChannel.as" index="10">
+<position info="not_deleted" x="3175" y="12"/>
 </item>
-<item historyLabel="PusherChannel.as" index="2">
-<position info="not_deleted" x="3967" y="0"/>
+<item historyLabel="Pusher.as" index="8">
+<position info="not_deleted" x="8114" y="4"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6288" y="0"/>
+<item historyLabel="PusherChannel.as" index="10">
+<position info="not_deleted" x="3175" y="12"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="3572" y="0"/>
+<item historyLabel="PusherOptions.as" index="9">
+<position info="not_deleted" x="1344" y="0"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6288" y="0"/>
+<item historyLabel="Pusher.as" index="8">
+<position info="not_deleted" x="2096" y="0"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="5022" y="0"/>
+<item historyLabel="PusherChannel.as" index="10">
+<position info="not_deleted" x="3175" y="12"/>
 </item>
-<item historyLabel="PusherEvent.as" index="5">
-<position info="not_deleted" x="4272" y="0"/>
+<item historyLabel="Pusher.as" index="8">
+<position info="not_deleted" x="2096" y="0"/>
 </item>
-<item historyLabel="PusherEvent.as" index="5">
-<position info="not_deleted" x="2889" y="0"/>
+<item historyLabel="PusherASExample.as" index="7">
+<position info="not_deleted" x="5478" y="1"/>
 </item>
-<item historyLabel="PusherEvent.as" index="5">
-<position info="not_deleted" x="4662" y="0"/>
+<item historyLabel="PusherASExample.as" index="7">
+<position info="not_deleted" x="2130" y="0"/>
 </item>
-<item historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="5022" y="0"/>
+<item historyLabel="PusherASExample.as" index="7">
+<position info="not_deleted" x="5347" y="0"/>
 </item>
-<item historyLabel="PusherChannel.as" index="2">
-<position info="not_deleted" x="3967" y="0"/>
+<item historyLabel="Pusher.as" index="8">
+<position info="not_deleted" x="6500" y="0"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="5440" y="0"/>
+<item historyLabel="WebSocketLogger.as" index="11">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PusherAuthenticator.as" index="0">
-<position info="not_deleted" x="1928" y="0"/>
+<item historyLabel="Pusher.as" index="8">
+<position info="not_deleted" x="9211" y="3"/>
 </item>
-<item historyLabel="PusherChannel.as" index="2">
-<position info="not_deleted" x="4556" y="0"/>
+<item historyLabel="PusherASExample.as" index="7">
+<position info="not_deleted" x="5347" y="0"/>
 </item>
-<item historyLabel="Pusher.as" index="1">
-<position info="not_deleted" x="6587" y="0"/>
+<item historyLabel="Pusher.as" index="8">
+<position info="not_deleted" x="9285" y="0"/>
 </item>
-<item active="true" historyLabel="PusherASExample.as" index="3">
-<position info="not_deleted" x="5022" y="0"/>
+<item active="true" historyLabel="PusherASExample.as" index="7">
+<position info="not_deleted" x="5347" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -956,9 +969,6 @@
 <trimArea IMemento.internal.id="16384">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@139cb72"/>
 <trimItem IMemento.internal.id="outlineHolder"/>
-</trimArea>
-<trimArea IMemento.internal.id="131072">
-<trimItem IMemento.internal.id="org.eclipse.ui.editorss"/>
 </trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
@@ -972,20 +982,38 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherOptions.as" tooltip="PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as">
-<persistable path="/PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="JSONTokenizer.as" tooltip="as3corelib/src/com/adobe/serialization/json/JSONTokenizer.as">
-<persistable path="/as3corelib/src/com/adobe/serialization/json/JSONTokenizer.as"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="WebSocketLogger.as" tooltip="PusherAS/src/com/dozeo/pusheras/logger/WebSocketLogger.as">
+<persistable path="/PusherAS/src/com/dozeo/pusheras/logger/WebSocketLogger.as"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherAuthenticator.as" tooltip="PusherAS/src/com/dozeo/pusheras/auth/PusherAuthenticator.as">
 <persistable path="/PusherAS/src/com/dozeo/pusheras/auth/PusherAuthenticator.as"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherAuthenticationEvent.as" tooltip="PusherAS/src/com/dozeo/pusheras/events/PusherAuthenticationEvent.as">
-<persistable path="/PusherAS/src/com/dozeo/pusheras/events/PusherAuthenticationEvent.as"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherChannel.as" tooltip="PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as">
+<persistable path="/PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherConstants.as" tooltip="PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as">
+<persistable path="/PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherEvent.as" tooltip="PusherAS/src/com/dozeo/pusheras/events/PusherEvent.as">
 <persistable path="/PusherAS/src/com/dozeo/pusheras/events/PusherEvent.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherOptions.as" tooltip="PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as">
+<persistable path="/PusherAS/src/com/dozeo/pusheras/vo/PusherOptions.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="WebsocketStatus.as" tooltip="PusherAS/src/com/dozeo/pusheras/vo/WebsocketStatus.as">
+<persistable path="/PusherAS/src/com/dozeo/pusheras/vo/WebsocketStatus.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Pusher.as" tooltip="PusherAS/src/com/dozeo/pusheras/Pusher.as">
+<persistable path="/PusherAS/src/com/dozeo/pusheras/Pusher.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherASExample.as" tooltip="PusherASExample/src/PusherASExample.as">
+<persistable path="/PusherASExample/src/PusherASExample.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="JSONTokenizer.as" tooltip="as3corelib/src/com/adobe/serialization/json/JSONTokenizer.as">
+<persistable path="/as3corelib/src/com/adobe/serialization/json/JSONTokenizer.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherAuthenticationEvent.as" tooltip="PusherAS/src/com/dozeo/pusheras/events/PusherAuthenticationEvent.as">
+<persistable path="/PusherAS/src/com/dozeo/pusheras/events/PusherAuthenticationEvent.as"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherMouseEvent.as" tooltip="PusherASExample/src/pusher_events/PusherMouseEvent.as">
 <persistable path="/PusherASExample/src/pusher_events/PusherMouseEvent.as"/>
@@ -993,23 +1021,11 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="index.template.html" tooltip="PusherASExample/html-template/index.template.html">
 <persistable path="/PusherASExample/html-template/index.template.html"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherConstants.as" tooltip="PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as">
-<persistable path="/PusherAS/src/com/dozeo/pusheras/utils/PusherConstants.as"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherChannelEvent.as" tooltip="PusherAS/src/com/dozeo/pusheras/events/PusherChannelEvent.as">
 <persistable path="/PusherAS/src/com/dozeo/pusheras/events/PusherChannelEvent.as"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherASExample.as" tooltip="PusherASExample/src/PusherASExample.as">
-<persistable path="/PusherASExample/src/PusherASExample.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PusherChannel.as" tooltip="PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as">
-<persistable path="/PusherAS/src/com/dozeo/pusheras/channel/PusherChannel.as"/>
-</file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="PostAuthorizer.as" tooltip="/Users/tgriesel/workspace/dozeo/flash-dev/websocket_stuff/com/pusher/auth/PostAuthorizer.as">
 <persistable uri="file:/Users/tgriesel/workspace/dozeo/flash-dev/websocket_stuff/com/pusher/auth/PostAuthorizer.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Pusher.as" tooltip="PusherAS/src/com/dozeo/pusheras/Pusher.as">
-<persistable path="/PusherAS/src/com/dozeo/pusheras/Pusher.as"/>
 </file>
 </mruList>
 </workbench>

@@ -35,7 +35,7 @@ package com.dozeo.pusheras
 	 */
 	public class Pusher extends EventDispatcher
 	{
-		private static const VERSION:String = '0.1.1';
+		private static const VERSION:String = '0.1.2';
 		
 		// pusheras vars
 		private var _pusherOptions:PusherOptions;
@@ -135,8 +135,6 @@ package com.dozeo.pusheras
 		
 		protected function _websocket_OPEN(event:WebSocketEvent):void
 		{
-			//log('_websocket_OPEN Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
-			
 			// store status
 			_websocketStatus.connected = true;
 			
@@ -144,19 +142,19 @@ package com.dozeo.pusheras
 		
 		protected function _websocket_CLOSE(event:WebSocketEvent):void
 		{
-			//log('_websocket_CLOSE Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
-			// TODO Auto-generated method stub
-			
+			// store status
+			_websocketStatus.connected = false;
 		}
 		
 		protected function _websocket_ERROR(event:WebSocketEvent):void
 		{
-			//log('_websocket_ERROR Event { Message:' + event.message + ' Code:' + event.code + ' Reason:' + event.reason + ' Clean:' + event.wasClean + ' }');
-			// TODO Auto-generated method stub
+			// store status
+			_websocketStatus.connected = false;
 		}
 		
 		protected function _websocket_MESSAGE(event:WebSocketEvent):void
 		{
+			trace(event.message);
 			// try to parse new pusher event from websocket message
 			try
 			{
@@ -185,7 +183,7 @@ package com.dozeo.pusheras
 			}
 			else
 			{
-				// redispatch pusher event global
+				// redispatch pusher event
 				this.dispatchEvent(pusherEvent);
 			}		
 		}
@@ -202,7 +200,7 @@ package com.dozeo.pusheras
 		 * Subscribes a pusher channel with the given name.
 		 * add native event listeners to it
 		 * @param channelName The name of your channel
-		 * @return a chanel instance for event listening and dispatching
+		 * @return a channel instance for event listening and dispatching
 		 */	
 		public function subscribe(channelName:String):PusherChannel
 		{

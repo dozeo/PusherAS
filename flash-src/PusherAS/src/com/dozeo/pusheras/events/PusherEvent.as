@@ -89,12 +89,11 @@ package com.dozeo.pusheras.events
 		 * */
 		public static function parse(data:String):PusherEvent
 		{
-
 			// check if message object is null
 			if(data == null)
 				throw new Error('data cannot be empty');
 			
-			// decode data JSON string to an raw object
+			// decode JSON data string to an raw object
 			var decodedObject:Object = JSON.decode(decodeURIComponent(data));
 	
 			// parse "event" property

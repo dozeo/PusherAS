@@ -1,7 +1,0 @@
-package com.dozeo.pusheras.channel
-{
-	public interface IPusherChannel
-	{
-		public function dispatchPusherEvent(event:PusherEvent):void
-	}
-}

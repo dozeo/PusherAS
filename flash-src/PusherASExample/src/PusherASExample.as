@@ -32,8 +32,8 @@ package
 	[SWF(width=1920,height=1080)]
 	public class PusherASExample extends Sprite
 	{
-		private static const APP_KEY:String = 'f1063b8b6dd3dxxxxxxxxx';
-		private static const AUTH_ENDPOINT:String = 'http://172.16.10.46:8888/pusher_auth/auth.php';
+		private static const APP_KEY:String = 'YOUR_APP_KEY';
+		private static const AUTH_ENDPOINT:String = 'http://YOUR_AUTH_SERVER';
 		private static const ORIGIN:String = 'http://localhost/';
 		private static const SECURE:Boolean = true;
 		

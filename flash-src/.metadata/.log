@@ -1699,3 +1699,353 @@ Binding(COMMAND+SHIFT+G,
 
 !ENTRY org.eclipse.osgi 2 1 2012-01-19 16:52:55.945
 !MESSAGE NLS unused message: MoveResourceChange_error_destination_already_exists in: org.eclipse.ltk.internal.core.refactoring.RefactoringCoreMessages
+!SESSION 2012-01-19 17:05:24.255 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_29
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=de_DE
+Framework arguments:  -keyring /Users/tgriesel/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -keyring /Users/tgriesel/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.osgi 2 1 2012-01-19 17:05:37.746
+!MESSAGE NLS unused message: FileBuffer_status_ok in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-01-19 17:05:37.747
+!MESSAGE NLS unused message: DocumentInputStream_error_read in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY com.adobe.flexbuilder.project 4 43 2012-01-19 17:05:38.257
+!MESSAGE Error en SocketClientReceiver 69
+!STACK 0
+java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:383)
+	at java.net.ServerSocket.bind(ServerSocket.java:328)
+	at java.net.ServerSocket.<init>(ServerSocket.java:194)
+	at java.net.ServerSocket.<init>(ServerSocket.java:106)
+	at com.adobe.flexbuilder.flexunitrunresults.data.ClientSocketsManager.listen(ClientSocketsManager.java:57)
+	at com.adobe.flexbuilder.flexunitrunresults.data.ClientSocketsManager.run(ClientSocketsManager.java:113)
+	at java.lang.Thread.run(Thread.java:680)
+
+!ENTRY org.eclipse.core.net 1 0 2012-01-19 17:05:41.212
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.osgi 2 1 2012-01-19 17:05:41.688
+!MESSAGE NLS unused message: AutomaticUpdater_ErrorCheckingUpdates in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.osgi 2 1 2012-01-19 17:05:41.689
+!MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.jface 2 0 2012-01-19 17:06:07.215
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-01-19 17:06:07.215
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F12:
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.searchForTask,Search Repository for Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigieren,null,true),
+		org.eclipse.mylyn.internal.tasks.ui.search.SearchTaskHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.flashbridge.export.publish.movie,Film veröffentlichen,
+		In Flash Professional veröffentlichen,
+		Category(com.adobe.flexbuilder.flashbridge.flashProCommands,Flash Professional,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SESSION 2012-02-18 00:27:35.871 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_29
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=de_DE
+Framework arguments:  -keyring /Users/tgriesel/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -data /Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src -keyring /Users/tgriesel/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-18 00:27:40.238
+!MESSAGE NLS unused message: FileBuffer_status_ok in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-18 00:27:40.247
+!MESSAGE NLS unused message: DocumentInputStream_error_read in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.jface 2 0 2012-02-18 00:27:43.280
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-02-18 00:27:43.280
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F12:
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.searchForTask,Search Repository for Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigieren,null,true),
+		org.eclipse.mylyn.internal.tasks.ui.search.SearchTaskHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.flashbridge.export.publish.movie,Film veröffentlichen,
+		In Flash Professional veröffentlichen,
+		Category(com.adobe.flexbuilder.flashbridge.flashProCommands,Flash Professional,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.jface 2 0 2012-02-18 00:27:43.318
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-02-18 00:27:43.318
+!MESSAGE A conflict occurred for COMMAND+G:
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,Alle Deklarationen im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@fe4dd2)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,Alle Deklarationen im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@fe4dd2)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.declarations.in.workspace,Deklaration in Arbeitsbereich,
+		Sucht im Arbeitsbereich nach Deklarationen des ausgewählten Elements,
+		Category(org.eclipse.search.ui.category.search,Suchen,Suchbefehlskategorie,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-02-18 00:27:43.318
+!MESSAGE A conflict occurred for COMMAND+SHIFT+G:
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,Alle Verweise im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@10cfd02)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,Alle Verweise im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@10cfd02)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace,Verweise in Arbeitsbereich,
+		Sucht im Arbeitsbereich nach Verweisen auf das ausgewählte Element,
+		Category(org.eclipse.search.ui.category.search,Suchen,Suchbefehlskategorie,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.core.net 1 0 2012-02-18 00:27:44.156
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-18 00:27:44.328
+!MESSAGE NLS unused message: AutomaticUpdater_ErrorCheckingUpdates in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-18 00:27:44.328
+!MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+!SESSION 2012-02-20 09:25:49.908 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_29
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=de_DE
+Framework arguments:  -keyring /Users/tgriesel/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -keyring /Users/tgriesel/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-20 09:25:55.863
+!MESSAGE NLS unused message: FileBuffer_status_ok in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-20 09:25:55.869
+!MESSAGE NLS unused message: DocumentInputStream_error_read in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.jface 2 0 2012-02-20 09:26:01.500
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-02-20 09:26:01.500
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F12:
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.searchForTask,Search Repository for Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigieren,null,true),
+		org.eclipse.mylyn.internal.tasks.ui.search.SearchTaskHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.flashbridge.export.publish.movie,Film veröffentlichen,
+		In Flash Professional veröffentlichen,
+		Category(com.adobe.flexbuilder.flashbridge.flashProCommands,Flash Professional,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.jface 2 0 2012-02-20 09:26:01.529
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-02-20 09:26:01.529
+!MESSAGE A conflict occurred for COMMAND+G:
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,Alle Deklarationen im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@1c0fc25)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,Alle Deklarationen im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@1c0fc25)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.declarations.in.workspace,Deklaration in Arbeitsbereich,
+		Sucht im Arbeitsbereich nach Deklarationen des ausgewählten Elements,
+		Category(org.eclipse.search.ui.category.search,Suchen,Suchbefehlskategorie,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-02-20 09:26:01.529
+!MESSAGE A conflict occurred for COMMAND+SHIFT+G:
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,Alle Verweise im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@478c68)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,Alle Verweise im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@478c68)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace,Verweise in Arbeitsbereich,
+		Sucht im Arbeitsbereich nach Verweisen auf das ausgewählte Element,
+		Category(org.eclipse.search.ui.category.search,Suchen,Suchbefehlskategorie,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.core.net 1 0 2012-02-20 09:26:01.855
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-20 09:26:02.046
+!MESSAGE NLS unused message: AutomaticUpdater_ErrorCheckingUpdates in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.osgi 2 1 2012-02-20 09:26:02.047
+!MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+!SESSION 2012-03-23 12:50:23.239 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_29
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=de_DE
+Framework arguments:  -keyring /Users/tgriesel/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86 -data /Users/tgriesel/workspace/dozeo/flash-dev/PusherAS/flash-src -keyring /Users/tgriesel/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.osgi 2 1 2012-03-23 12:50:27.344
+!MESSAGE NLS unused message: FileBuffer_status_ok in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.osgi 2 1 2012-03-23 12:50:27.350
+!MESSAGE NLS unused message: DocumentInputStream_error_read in: org.eclipse.core.internal.filebuffers.FileBuffersMessages
+
+!ENTRY org.eclipse.jface 2 0 2012-03-23 12:50:31.624
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-03-23 12:50:31.624
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F12:
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.searchForTask,Search Repository for Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigieren,null,true),
+		org.eclipse.mylyn.internal.tasks.ui.search.SearchTaskHandler,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+F12,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.flashbridge.export.publish.movie,Film veröffentlichen,
+		In Flash Professional veröffentlichen,
+		Category(com.adobe.flexbuilder.flashbridge.flashProCommands,Flash Professional,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.jface 2 0 2012-03-23 12:50:31.652
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-03-23 12:50:31.652
+!MESSAGE A conflict occurred for COMMAND+G:
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,Alle Deklarationen im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@19e9da7)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.declarations.in.workspace,Alle Deklarationen im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllDeclarationsAction@19e9da7)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(COMMAND+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.declarations.in.workspace,Deklaration in Arbeitsbereich,
+		Sucht im Arbeitsbereich nach Deklarationen des ausgewählten Elements,
+		Category(org.eclipse.search.ui.category.search,Suchen,Suchbefehlskategorie,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-03-23 12:50:31.652
+!MESSAGE A conflict occurred for COMMAND+SHIFT+G:
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,Alle Verweise im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1611531)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexide.editorcore.flexEditorScope,,,system)
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(com.adobe.flexbuilder.as.editor.find.all.references.in.workspace,Alle Verweise im Arbeitsbereich finden,
+		,
+		Category(com.adobe.flexbuilder.editorcore.navigation.category,Navigation,null,true),
+		LegacyHandlerWrapper(ActionHandler(action=com.adobe.flexbuilder.as.editor.ui.actions.FindAllReferencesAction@1611531)),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.adobe.flexbuilder.as.editor.context.packageexplorer,,,system)
+Binding(COMMAND+SHIFT+G,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace,Verweise in Arbeitsbereich,
+		Sucht im Arbeitsbereich nach Verweisen auf das ausgewählte Element,
+		Category(org.eclipse.search.ui.category.search,Suchen,Suchbefehlskategorie,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.core.net 1 0 2012-03-23 12:50:31.947
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.osgi 2 1 2012-03-23 12:50:32.120
+!MESSAGE NLS unused message: AutomaticUpdater_ErrorCheckingUpdates in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
+
+!ENTRY org.eclipse.osgi 2 1 2012-03-23 12:50:32.120
+!MESSAGE NLS unused message: AutomaticUpdater_ResolutionOperationLabel in: org.eclipse.equinox.internal.p2.ui.sdk.scheduler.messages
