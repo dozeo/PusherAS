@@ -1,7 +1,7 @@
 package com.dozeo.pusheras.auth
 {
 	import com.adobe.crypto.HMAC;
-	import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON2;
 	import com.dozeo.pusheras.events.PusherAuthenticationEvent;
 	
 	import flash.events.*;
@@ -10,15 +10,22 @@ package com.dozeo.pusheras.auth
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.net.URLVariables;
+	
+	import org.as3commons.logging.api.ILogger;
+	import org.as3commons.logging.api.getLogger;
 
 	public class PusherAuthenticator extends EventDispatcher
 	{
+		private static const logger: ILogger = getLogger( PusherAuthenticator );
+		
 		public function PusherAuthenticator()
 		{
 		}
 		
 		public function authenticate(socketID:String, endPoint:String, channelName:String):void
 		{
+			logger.info('authenticate socket connection (socketID:' + socketID + ',endpoint:' + endPoint + ',channelName:' + channelName + ')...');
+			
 			var urlLoader:URLLoader = new URLLoader();
 			var urlRequest:URLRequest = new URLRequest(endPoint);
 			var postVars:URLVariables = new URLVariables();
@@ -33,7 +40,7 @@ package com.dozeo.pusheras.auth
 			try {
 				urlLoader.load(urlRequest);
 			} catch (error:Error) {
-				trace("Unable to load authentication request!");
+				logger.error('unable to load authentication request! (' + error.message + ')');
 			}
 		}
 		
@@ -49,43 +56,61 @@ package com.dozeo.pusheras.auth
 		private function urlLoader_COMPLETE(event:Event):void {
 			var loader:URLLoader = URLLoader(event.target);
 			
-			
 			if(loader.hasOwnProperty('data') == true)
 			{
-				var decodedData:Object = JSON.decode(loader.data);
+				var decodedData:Object = JSON2.decode(loader.data);
 				
 				if(decodedData.hasOwnProperty('auth'))
 				{
 					var authString:String = decodedData.auth;
-					this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.SUCESSFULL, authString));	
+					logger.info('authentication successful (auth: ' + authString + ')');
+					this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.SUCCESSFUL, authString));	
 				}
 				else
-					this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.FAILED));	
+				{
+					logger.warn('authentication failed! Property "auth" not found in response data!');
+					this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.FAILED));
+				}
 			}
 			else
+			{
+				logger.warn('authentication failed! Property "data" not found in response data!');
 				this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.FAILED));	
+			}
+				
+			loader.close();
 		}
 		
 		private function urlLoader_OPEN(event:Event):void {
-			//trace("openHandler: " + event);
+			// empty
 		}
 		
 		private function urlLoader_HTTP_STATUS(event:HTTPStatusEvent):void {
-			//trace("httpStatusHandler: " + event);
+			// empty
 		}
 		
 		private function urlLoader_PROGRESS(event:ProgressEvent):void {
-			//trace("progressHandler loaded:" + event.bytesLoaded + " total: " + event.bytesTotal);
+			// empty
 		}
 		
 		private function urlLoader_SECURITY_ERROR(event:SecurityErrorEvent):void {
-			trace("securityErrorHandler: " + event);
+			logger.warn('security error! (' + event + ')');
+			
 			this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.FAILED));
+			
+			// close connection
+			var loader:URLLoader = URLLoader(event.target);
+			loader.close();
 		}
 		
 		private function urlLoader_IO_ERROR(event:IOErrorEvent):void {
-			trace("ioErrorHandler: " + event);
+			logger.warn('io error! (' + event + ')');
+			
 			this.dispatchEvent(new PusherAuthenticationEvent(PusherAuthenticationEvent.FAILED));
+			
+			// close connection
+			var loader:URLLoader = URLLoader(event.target);
+			loader.close();
 		}
 	}
 }
