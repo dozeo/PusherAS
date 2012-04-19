@@ -37,7 +37,7 @@ package com.dozeo.pusheras.channel
 		private var _type:String;
 		private var _name:String;
 		private var _pusherEventDispatcherCallback:Function;
-		private var _authenticationSignature:String;
+		private var _authenticationSignature:String = '';
 		
 		private var _authenticationRequired:Boolean;
 		private var _socketID:String;
@@ -89,15 +89,15 @@ package com.dozeo.pusheras.channel
 			
 			event.channel = _name;
 			event.event = PusherConstants.CLIENT_EVENT_NAME_PREFIX + event.event;
-			event.data.auth = _authenticationSignature;
 			
+			event.data.auth = _authenticationSignature;
 			_pusherEventDispatcherCallback(event);
 		}
 		
 		private function authenticate(socketID:String, authenticationEndPoint:String):void
 		{
 			var pusherAuthenticator:PusherAuthenticator = new PusherAuthenticator();
-			pusherAuthenticator.addEventListener(PusherAuthenticationEvent.SUCESSFULL, pusherAuthenticator_SUCESSFULL, false, 0, true);
+			pusherAuthenticator.addEventListener(PusherAuthenticationEvent.SUCCESSFUL, pusherAuthenticator_SUCESSFULL, false, 0, true);
 			pusherAuthenticator.addEventListener(PusherAuthenticationEvent.FAILED, pusherAuthenticator_FAILED, false, 0, true);
 			
 			pusherAuthenticator.authenticate(socketID, authenticationEndPoint, _name);
