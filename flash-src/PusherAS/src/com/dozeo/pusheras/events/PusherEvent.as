@@ -10,7 +10,7 @@
 
 package com.dozeo.pusheras.events
 {
-	import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON2;
 	import com.dozeo.pusheras.utils.PusherConstants;
 	
 	import flash.events.Event;
@@ -94,7 +94,7 @@ package com.dozeo.pusheras.events
 				throw new Error('data cannot be empty');
 			
 			// decode JSON data string to an raw object
-			var decodedObject:Object = JSON.decode(decodeURIComponent(data));
+			var decodedObject:Object = JSON2.decode(decodeURIComponent(data), false);
 	
 			// parse "event" property
 			if(decodedObject.hasOwnProperty('event'))
@@ -117,7 +117,14 @@ package com.dozeo.pusheras.events
 			// parse "data" property
 			if(decodedObject.hasOwnProperty('data'))
 			{
-				pusherEvent.data = JSON.decode(decodeURIComponent(decodedObject.data));	
+				try
+				{
+					pusherEvent.data = JSON2.decode(decodedObject.data, false);		
+				}
+				catch(e:Error)
+				{
+					trace('cannot parse data part! Message: ' + e.message + ' <  ' + decodedObject.data );
+				}
 			}
 
 			// parse "channel" property
@@ -141,7 +148,7 @@ package com.dozeo.pusheras.events
 			pusherEvent.data = this.data;
 			pusherEvent.event = this.event;
 	
-			var eventString:String = JSON.encode(pusherEvent);
+			var eventString:String = JSON2.encode(pusherEvent);
 			return eventString;
 		}
 	}
