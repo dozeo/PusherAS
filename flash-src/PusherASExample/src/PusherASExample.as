@@ -25,17 +25,25 @@ package
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	
+	import org.as3commons.logging.api.ILogger;
+	import org.as3commons.logging.api.LOGGER_FACTORY;
+	import org.as3commons.logging.api.getLogger;
+	import org.as3commons.logging.setup.SimpleTargetSetup;
+	import org.as3commons.logging.setup.target.TraceTarget;
+	
 	/**
 	 * Pusher <http://pusher.com> Example Application
 	 * @author Tilman Griesel <https://github.com/TilmanGriesel> - dozeo GmbH <http://dozeo.com>
 	 */
 	[SWF(width=1920,height=1080)]
 	public class PusherASExample extends Sprite
-	{
+	{	
+		private static const logger: ILogger = getLogger( PusherASExample );
+		
 		private static const APP_KEY:String = 'YOUR_APP_KEY';
 		private static const AUTH_ENDPOINT:String = 'http://YOUR_AUTH_SERVER';
 		private static const ORIGIN:String = 'http://localhost/';
-		private static const SECURE:Boolean = true;
+		private static const SECURE:Boolean = true;	
 		
 		private var _pusher:Pusher;
 		private var _mouseEventChannel:PusherChannel;
@@ -47,6 +55,9 @@ package
 		
 		public function PusherASExample()
 		{
+			// setup logger
+			LOGGER_FACTORY.setup = new SimpleTargetSetup(new TraceTarget);
+			
 			stage.stageWidth = 2000;
 			stage.stageHeight = 2000;
 			
@@ -72,6 +83,7 @@ package
 			
 			// create pusher client and connect to server
 			_pusher = new Pusher(pusherOptions);
+			_pusher.verboseLogging = true;
 			_pusher.addEventListener(PusherEvent.CONNECTION_ESTABLISHED, pusher_CONNECTION_ESTABLISHED);
 			_pusher.connect();
 		}
