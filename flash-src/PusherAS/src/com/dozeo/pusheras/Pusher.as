@@ -10,7 +10,7 @@
 
 package com.dozeo.pusheras
 {
-	import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSON2;
 	import com.adobe.serialization.json.JSONDecoder;
 	import com.dozeo.pusheras.channel.PusherChannel;
 	import com.dozeo.pusheras.events.PusherChannelEvent;
@@ -24,10 +24,13 @@ package com.dozeo.pusheras
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
-	import net.gimite.websocket.IWebSocketLogger;
-	import net.gimite.websocket.WebSocket;
-	import net.gimite.websocket.WebSocketEvent;
-	import net.gimite.websocket.WebSocketFrame;
+	import net.websocket.IWebSocketLogger;
+	import net.websocket.WebSocket;
+	import net.websocket.WebSocketEvent;
+	import net.websocket.WebSocketFrame;
+	
+	import org.as3commons.logging.api.ILogger;
+	import org.as3commons.logging.api.getLogger;
 	
 	/**
 	 * Pusher <http://pusher.com> ActionScript3 Client Library
@@ -35,7 +38,11 @@ package com.dozeo.pusheras
 	 */
 	public class Pusher extends EventDispatcher
 	{
-		private static const VERSION:String = '0.1.2';
+		private static const logger: ILogger = getLogger( Pusher );
+		
+		private static const VERSION:String = '0.1.3';
+		
+		private var _verboseLogging:Boolean = false;
 		
 		// pusheras vars
 		private var _pusherOptions:PusherOptions;
@@ -53,6 +60,8 @@ package com.dozeo.pusheras
 		 * */
 		public function Pusher(options:PusherOptions)
 		{
+			logger.info('construct');
+			
 			// parameter check
 			if(options == null)
 				throw new Error('options cannot be null');
@@ -69,9 +78,11 @@ package com.dozeo.pusheras
 			
 			this.addEventListener(PusherEvent.CONNECTION_ESTABLISHED, this_CONNECTION_ESTABLISHED);
 		}
-		
+
 		public function connect():void
 		{
+			logger.info('connecting...');
+			
 			// connect to websocket server
 			connectWebsocket();
 		}
@@ -103,6 +114,8 @@ package com.dozeo.pusheras
 				return;
 			}
 			
+			logger.info('environment checked. connecting...');
+			
 			// update status
 			_pusherStatus.connecting = true;
 			_websocketStatus.connecting = true;
@@ -113,7 +126,7 @@ package com.dozeo.pusheras
 				pusherURL = _pusherOptions.pusherSecureURL;
 			else
 				pusherURL = _pusherOptions.pusherURL;
-
+			
 			// create websocket instance
 			_websocket = new WebSocket(_websocketStatus.connectionIndex,
 										pusherURL,
@@ -123,7 +136,7 @@ package com.dozeo.pusheras
 										_pusherOptions.proxyPort,
 										_pusherOptions.cookie,
 										_pusherOptions.headers,
-										new WebSocketLogger());
+										new WebSocketLogger(_verboseLogging));
 			
 			// add websocket event listeners
 			_websocket.addEventListener(WebSocketEvent.OPEN, _websocket_OPEN);
@@ -135,38 +148,46 @@ package com.dozeo.pusheras
 		
 		protected function _websocket_OPEN(event:WebSocketEvent):void
 		{
-			// store status
-			_websocketStatus.connected = true;
+			logger.info('websocket open');
 			
+			// store status
+			_websocketStatus.connected = true;			
 		}
 		
 		protected function _websocket_CLOSE(event:WebSocketEvent):void
 		{
+			logger.info('websocket close: ' + unescape(event.message));
+			
 			// store status
 			_websocketStatus.connected = false;
 		}
 		
 		protected function _websocket_ERROR(event:WebSocketEvent):void
 		{
+			logger.error('websocket error: ' + unescape(event.message));
+			
 			// store status
 			_websocketStatus.connected = false;
 		}
 		
 		protected function _websocket_MESSAGE(event:WebSocketEvent):void
 		{
-			trace(event.message);
+			if(_verboseLogging)
+			{
+				logger.info('websocket message: ' + unescape(event.message));	
+			}
+			
+			
 			// try to parse new pusher event from websocket message
 			try
 			{
-				var pusherEvent:PusherEvent = PusherEvent.parse(event.message);				
+				var pusherEvent:PusherEvent = PusherEvent.parse(unescape(event.message));				
 			}
 			catch(e:Error)
 			{
-				log('websocket message error: ' + e.message);
+				logger.error('websocket message parsing error: ' + e.message + ' | message: ' + unescape(event.message));
 				return;
 			}
-			
-			log('(received):' + pusherEvent.toJSON());
 			
 			// look in the channel bucket if channel subscribed and dispatch event on it
 			// very simple logic with great performance ;)
@@ -190,8 +211,10 @@ package com.dozeo.pusheras
 		
 		protected function this_CONNECTION_ESTABLISHED(event:PusherEvent):void
 		{
-			_pusherStatus.connected = true;
+			logger.info('websocket connection established. socket id: ' + event.data.socket_id);
 			
+			_pusherStatus.connected = true;
+						
 			if(event.data.hasOwnProperty('socket_id'))
 				_websocketStatus.socketID = event.data.socket_id;
 		}
@@ -213,11 +236,15 @@ package com.dozeo.pusheras
 			
 			// define channel type
 			if(channelName.indexOf(PusherConstants.CHANNEL_NAME_PRIVATE_PREFIX) != -1)
+			{
+				logger.info('subscribing private channel "' + channelName + '"...'); 
 				pusherChannel = new PusherChannel(PusherChannel.PRIVATE, channelName, dispatchPusherEvent, true, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
-			else if(channelName.indexOf(PusherConstants.CHANNEL_NAME_PRESENCE_PREFIX) != -1)
-				pusherChannel = new PusherChannel(PusherChannel.PRESENCE, channelName, dispatchPusherEvent, true, _websocketStatus.socketID, _pusherOptions.auth_endpoint);
+			}
 			else
+			{
+				logger.info('subscribing public channel "' + channelName + '"...'); 
 				pusherChannel = new PusherChannel(PusherChannel.PUBLIC, channelName, dispatchPusherEvent);
+			}
 			
 			// add internal channel event listeners
 			pusherChannel.addEventListener(PusherChannelEvent.SETUP_COMPLETE, pusherChannel_SETUP_COMPLETE);
@@ -276,11 +303,14 @@ package com.dozeo.pusheras
 		{
 			// check websocket connection
 			if(_websocketStatus.connected == false)
-				throw new Error('websocket is not connected, cannot send event');
+			{
+				logger.warn('websocket is not connected... cannot send event!');
+				//throw new Error('websocket is not connected, cannot send event');
+			}
 			
 			try
 			{
-				log('(send):' + event.toJSON());
+				if(_verboseLogging) logger.info('send >> ' + event.toJSON());
 				_websocket.send(event.toJSON());
 			}
 			catch(e:Error)
@@ -293,9 +323,29 @@ package com.dozeo.pusheras
 		 * Event Logging
 		 * ToDo
 		 * */
+		private var _loggingEnabled:Boolean = true;
 		private function log(msg:String):void
 		{
-			trace('LOG: ' + msg);
+			if(_loggingEnabled)
+			{
+				trace('LOG: ' + msg);
+			}
 		}
+		
+		public function get pusherStatus():PusherStatus
+		{
+			return _pusherStatus;
+		}
+
+		public function get verboseLogging():Boolean
+		{
+			return _verboseLogging;
+		}
+
+		public function set verboseLogging(value:Boolean):void
+		{
+			_verboseLogging = value;
+		}
+
 	}
 }
