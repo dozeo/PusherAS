@@ -10,7 +10,10 @@
 
 package com.dozeo.pusheras.logger
 {
-	import net.gimite.websocket.IWebSocketLogger;
+	import net.websocket.IWebSocketLogger;
+	
+	import org.as3commons.logging.api.ILogger;
+	import org.as3commons.logging.api.getLogger;
 	
 	/**
 	 * Pusher <http://pusher.com> Websocket Logger
@@ -18,19 +21,24 @@ package com.dozeo.pusheras.logger
 	 */
 	public class WebSocketLogger implements IWebSocketLogger
 	{
-		public function WebSocketLogger()
+		private static const logger: ILogger = getLogger( WebSocketLogger );
+		
+		private var _verboseMode:Boolean = false;
+		
+		public function WebSocketLogger(verboseMode:Boolean = false)
 		{
-			//TODO: implement function
+			_verboseMode = verboseMode;
 		}
 		
 		public function log(message:String):void
 		{
-			//trace('WebSocketLogger: ' + message);
+			if(_verboseMode)
+				logger.info(message);
 		}
 		
 		public function error(message:String):void
 		{
-			//trace('WebSocketLogger: ' + message)
+			logger.error(message);
 		}
 	}
 }
