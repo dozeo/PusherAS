@@ -1,4 +1,5 @@
-#Fri Jan 13 17:23:31 CET 2012
+#Fri Mar 23 14:15:45 CET 2012
 PLUGINS_NOT_ACTIVATED_ON_STARTUP=org.eclipse.epp.usagedata.gathering;org.eclipse.epp.usagedata.recording;
+RUN_IN_BACKGROUND=true
 eclipse.preferences.version=1
 ENABLED_DECORATORS=com.adobe.flexbuilder.flashbridge.applicationDecorator\:true,com.adobe.flexbuilder.project.ui.applicationDecorator\:true,com.adobe.flexbuilder.project.ui.classpathDecorator\:true,org.eclipse.wst.server.ui.decorator\:false,org.eclipse.jdt.ui.override.decorator\:true,org.eclipse.jdt.ui.interface.decorator\:false,org.eclipse.jdt.ui.buildpath.decorator\:true,org.eclipse.mylyn.context.ui.decorator.interest\:true,org.eclipse.mylyn.tasks.ui.decorators.task\:true,org.eclipse.mylyn.team.ui.changeset.decorator\:true,org.eclipse.team.cvs.ui.decorator\:true,org.eclipse.ui.LinkedResourceDecorator\:true,org.eclipse.ui.VirtualResourceDecorator\:true,org.eclipse.ui.ContentTypeDecorator\:true,org.eclipse.ui.ResourceFilterDecorator\:false,org.eclipse.wst.server.ui.navigatorDecorator\:true,

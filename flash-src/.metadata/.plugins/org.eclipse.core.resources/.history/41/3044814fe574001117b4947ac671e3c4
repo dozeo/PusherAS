@@ -1,0 +1,9 @@
+package mx.utils
+{
+	public class URLUtil
+	{
+		public function URLUtil()
+		{
+		}
+	}
+}

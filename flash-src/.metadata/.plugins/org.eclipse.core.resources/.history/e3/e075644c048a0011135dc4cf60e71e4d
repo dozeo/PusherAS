@@ -1,0 +1,83 @@
+package com.dozeo.pusheras.vo
+{
+	public class PusherEventData
+	{
+		private var _auth:String = '';
+		private var _socket_id:String = '';
+		private var _channel:String = '';
+		private var _pl:Object = new Object();
+		
+		
+		public function PusherEventData()
+		{
+		}
+		
+		public static function parse(obj:Object):PusherEventData
+		{
+			var data:PusherEventData = new PusherEventData();
+			
+			if(obj.hasOwnProperty('auth'))
+			{
+				data.auth = obj.auth;
+			}
+			
+			if(obj.hasOwnProperty('socket_id'))
+			{
+				data.socket_id = obj.socket_id;
+			}
+
+			if(obj.hasOwnProperty('channel'))
+			{
+				data.channel = obj.channel;
+			}
+			
+			if(obj.hasOwnProperty('pl'))
+			{
+				data.pl = obj.pl;
+			}
+			
+			return data;
+		}
+		
+		public function get channel():String
+		{
+			return _channel;
+		}
+
+		public function set channel(value:String):void
+		{
+			_channel = value;
+		}
+
+		public function get socket_id():String
+		{
+			return _socket_id;
+		}
+
+		public function set socket_id(value:String):void
+		{
+			_socket_id = value;
+		}
+
+		public function get pl():Object
+		{
+			return _pl;
+		}
+
+		public function set pl(value:Object):void
+		{
+			_pl = value;
+		}
+
+		public function get auth():String
+		{
+			return _auth;
+		}
+
+		public function set auth(value:String):void
+		{
+			_auth = value;
+		}
+
+	}
+}

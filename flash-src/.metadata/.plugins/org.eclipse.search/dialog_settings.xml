@@ -11,8 +11,8 @@
 	<section name="DialogBounds_SearchDialog">
 		<item value="740" key="DIALOG_WIDTH"/>
 		<item value="318" key="DIALOG_Y_ORIGIN"/>
-		<item value="590" key="DIALOG_X_ORIGIN"/>
 		<item value="423" key="DIALOG_HEIGHT"/>
+		<item value="590" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="Search">
@@ -40,7 +40,7 @@
 		</section>
 		<section name="HISTORY0">
 			<item value="false" key="isRegExSearch"/>
-			<item value="authorizer" key="textPattern"/>
+			<item value="Base64Encoder" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<list key="fileNamePatterns">
@@ -51,7 +51,7 @@
 		</section>
 		<section name="HISTORY1">
 			<item value="false" key="isRegExSearch"/>
-			<item value="Base64Encoder" key="textPattern"/>
+			<item value="authorizer" key="textPattern"/>
 			<item value="0" key="scope"/>
 			<item value="true" key="ignoreCase"/>
 			<list key="fileNamePatterns">
