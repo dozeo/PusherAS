@@ -8,7 +8,7 @@ package com.dozeo.pusheras.events
 	public class PusherAuthenticationEvent extends Event
 	{
 		// const
-		static public const SUCESSFULL:String = 'successfull';
+		static public const SUCCESSFUL:String = 'successful';
 		static public const FAILED:String = 'failed';
 		
 		// vars
