@@ -190,7 +190,7 @@ package com.dozeo.pusheras
 			}
 			
 			// look in the channel bucket if channel subscribed and dispatch event on it
-			// very simple logic with great performance ;)
+			// very simple logic with great performance
 			if(pusherEvent.channel != null)
 			{
 				for(var i:int = 0; i < _channelBucket.length; i++)
@@ -269,7 +269,7 @@ package com.dozeo.pusheras
 			// create new pusher event
 			var pusherEvent:PusherEvent = new PusherEvent(PusherEvent.SUBSCRIBE);
 			pusherEvent.data.channel = pusherChannel.name;
-			pusherEvent.data.auth = pusherChannel.authenticationSignature;
+			pusherEvent.data.auth = _pusherOptions.applicationKey + ':' + pusherChannel.authenticationSignature;
 			
 			// dispatch event to pusher service
 			dispatchPusherEvent(pusherEvent);

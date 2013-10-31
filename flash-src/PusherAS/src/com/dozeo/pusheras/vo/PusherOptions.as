@@ -16,7 +16,8 @@ package com.dozeo.pusheras.vo
 	 */
 	public final class PusherOptions
 	{
-		private var _version:String = '1.9.0';
+		private var _version:String = '2.1';
+		private var _protocol:String = '5';
 		private var _applicationKey:String;
 		private var _origin:String;
 		private var _secure:Boolean = false;
@@ -199,7 +200,7 @@ package com.dozeo.pusheras.vo
 		
 		public function get connectionPath():String
 		{
-			return	'/app/' + _applicationKey + "?client=js&version=" + _version;
+			return	'/app/' + _applicationKey + "?client=js&version=" + _version + '&protocol=' + _protocol;
 		}
 
 		public function get pusherURL():String
