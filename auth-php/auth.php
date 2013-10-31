@@ -19,7 +19,7 @@ $channel_name = $_POST["channel_name"];
 $socket_id = $_POST["socket_id"];
 
 // channel data
-$secret = '79de6ccaa5xxxxxxxxxxxx';
+$secret = '79de6ccaa500aeXXXXXX'; // you will find this in your pusher access tokens
 $string_to_sign = $socket_id . ':' . $channel_name;
 
 // create HMAC SHA256 signature
