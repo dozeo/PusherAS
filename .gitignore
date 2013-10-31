@@ -29,11 +29,19 @@ local.properties
 # PDT-specific
 .buildpath
 
+
+#################
+## SVN
+#################
+
+.svn
+
 #################
 ## OSX
 #################
 
 .DS_Store
+
 
 bin/
 bin-debug/
