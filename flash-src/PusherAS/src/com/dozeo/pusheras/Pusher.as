@@ -40,7 +40,7 @@ package com.dozeo.pusheras
 	{
 		private static const logger: ILogger = getLogger( Pusher );
 		
-		private static const VERSION:String = '0.1.3';
+		private static const VERSION:String = '0.1.4';
 		
 		private var _verboseLogging:Boolean = false;
 		
